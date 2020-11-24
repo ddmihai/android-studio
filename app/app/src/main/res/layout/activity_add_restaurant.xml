@@ -13,7 +13,7 @@
         android:layout_marginStart="23dp"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="15dp"
-        android:text="New Restaurant"
+        android:text=" Restaurant "
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/radioButton"
         app:layout_constraintTop_toBottomOf="@+id/editText6" />
@@ -44,8 +44,8 @@
 
     <ImageView
         android:id="@+id/imageView12"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
@@ -123,7 +123,7 @@
     <EditText
         android:id="@+id/editText7"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:layout_marginTop="15dp"
@@ -147,29 +147,93 @@
         app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
 
     <TextView
-        android:id="@+id/textView55"
+        android:id="@+id/textView58"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Complete the form bellow"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bordered_button"
+        android:text="Complete "
+        android:textAllCaps="false"
+        android:textColor="#FFC107"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toEndOf="@+id/view40"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton5" />
+
+    <RadioButton
+        android:id="@+id/radioButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="12dp"
+        android:text="Vegetarian"
+        app:layout_constraintStart_toEndOf="@+id/view40"
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+    <RadioButton
+        android:id="@+id/radioButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="106dp"
+        android:layout_marginRight="106dp"
+        android:text="Non-vegetarian"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/radioButton5"
+        app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+    <TextView
+        android:id="@+id/textView59"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
-        android:layout_marginTop="28dp"
-        android:text="The specific of served food"
-        android:textColor="#000000"
+        android:layout_marginTop="20dp"
+        android:text="Type of serving"
+        android:textColor="#090909"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/view40"
+        app:layout_constraintTop_toBottomOf="@+id/editText8" />
+
+    <TextView
+        android:id="@+id/textView55"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="Where is this located"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/view38"
         app:layout_constraintTop_toBottomOf="@+id/editText7" />
 
     <EditText
         android:id="@+id/editText8"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:hint="Ex: Indian, Italian, Mediteranean...."
+        android:hint="Location "
         android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/view40"
+        app:layout_constraintStart_toEndOf="@+id/view39"
         app:layout_constraintTop_toBottomOf="@+id/textView55" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

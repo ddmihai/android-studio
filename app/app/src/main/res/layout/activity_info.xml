@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".info">
+
+    <View
+        android:id="@+id/view46"
+        android:layout_width="310dp"
+        android:layout_height="4dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/view45" />
+
+    <View
+        android:id="@+id/view45"
+        android:layout_width="310dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/roundgradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toEndOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/view44" />
+
+    <View
+        android:id="@+id/view42"
+        android:layout_width="4dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <TextView
+        android:id="@+id/textView56"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:text="@string/foodies_for_foodies"
+        android:textColor="#FF6D00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back" />
+
+    <TextView
+        android:id="@+id/textView57"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:text="Important informations"
+        android:textColor="#090909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+    <View
+        android:id="@+id/view41"
+        android:layout_width="4dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view42"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <View
+        android:id="@+id/view43"
+        android:layout_width="4dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view41"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginRight="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView56"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/newplate" />
+
+    <ImageView
+        android:id="@+id/back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="146dp"
+        android:layout_marginRight="146dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back" />
+
+    <View
+        android:id="@+id/view44"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/roundgradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16" />
+
+    <ImageView
+        android:id="@+id/imageView19"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view45"
+        app:layout_constraintStart_toStartOf="@+id/view45"
+        app:layout_constraintTop_toTopOf="@+id/view45"
+        app:layout_constraintVertical_bias="0.35"
+        app:srcCompat="@drawable/callback" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        android:text="For more informations call us on "
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/imageView19"
+        app:layout_constraintTop_toTopOf="@+id/view45" />
+
+    <TextView
+        android:id="@+id/textView61"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="+44 230 122 4412 233"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="@+id/view45"
+        app:layout_constraintStart_toStartOf="@+id/imageView19"
+        app:layout_constraintTop_toBottomOf="@+id/textView60"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView62"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        android:text="Please note that all food is prepared in compliance with the highest standards. Also, regarding to the kind of food, each restaurants offers its own different services for different kind of clients. However, you can find a range of specifics including special Halal products, vegan or vegetarian."
+        app:layout_constraintStart_toStartOf="@+id/view44"
+        app:layout_constraintTop_toTopOf="@+id/view44" />
+
+    <TextView
+        android:id="@+id/textView63"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="For more questions and informations, please do not hesitate to visit contact us page"
+        app:layout_constraintBottom_toBottomOf="@+id/view44"
+        app:layout_constraintEnd_toEndOf="@+id/view44"
+        app:layout_constraintStart_toStartOf="@+id/view44"
+        app:layout_constraintTop_toBottomOf="@+id/textView62"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginRight="162dp"
+        android:background="@drawable/bordered_button"
+        android:text="Logout"
+        android:textAllCaps="false"
+        android:textColor="#FF6D00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view43"
+        app:layout_constraintTop_toBottomOf="@+id/view46" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
