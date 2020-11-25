@@ -48,7 +48,7 @@
         android:id="@+id/tv_details"
         android:layout_width="346dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="272dp"
+        android:layout_marginBottom="256dp"
         android:background="@drawable/second_border_text"
         android:padding="10dp"
 
@@ -57,7 +57,7 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.43"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -157,33 +157,21 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="33dp"
         android:layout_marginLeft="33dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="Specific of food"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_details" />
 
-    <TextView
-        android:id="@+id/textView65"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="15dp"
-        android:text="Specific"
-        android:textColor="#000000"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView64" />
-
     <View
         android:id="@+id/view47"
-        android:background="@drawable/gradient_background_orange"
         android:layout_width="360dp"
         android:layout_height="4dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/gradient_background_orange"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView65" />
+        app:layout_constraintTop_toBottomOf="@+id/textView64" />
 
     <TextView
         android:id="@+id/textView66"
@@ -192,9 +180,11 @@
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="39dp"
         android:text="Place Name"
         android:textColor="#FF6D00"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView68"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_details" />
 
@@ -204,15 +194,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="297dp"
         android:layout_marginRight="297dp"
+        android:layout_marginBottom="36dp"
         android:text="Location "
         android:textColor="#FF6D00"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_details"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView66" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

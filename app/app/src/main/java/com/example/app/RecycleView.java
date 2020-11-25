@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener {
-
+    ImageView back;
     RecyclerView rv;
     ArrayList<User> list=new ArrayList<>();
     DatabaseReference dbref;
@@ -28,6 +30,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         setContentView(R.layout.activity_recycle_view);
         //        hide the actionbar
         getSupportActionBar().hide();
+        back = findViewById(R.id.back);
         rv=findViewById(R.id.rv_l);
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
         dbref= FirebaseDatabase.getInstance().getReference("_user_");
@@ -48,6 +51,13 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
 
             }
         });
+//        back btn
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), dashboard.class));
+            }
+        });
     }
 
     @Override
@@ -56,4 +66,5 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         intent.putExtra("User",list.get(i));
         startActivity(intent);
     }
+
 }

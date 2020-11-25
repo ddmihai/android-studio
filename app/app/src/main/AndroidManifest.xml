@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".info"></activity>
+        <activity android:name=".admin"></activity>
+        <activity android:name=".read_reviews" />
+        <activity android:name=".info" />
         <activity android:name=".personalSettingsFoodCritic" />
         <activity android:name=".personalSettingsAdmin" />
         <activity android:name=".personalsettings" />

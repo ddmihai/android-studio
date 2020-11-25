@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 public class settings extends AppCompatActivity {
-    ImageView personal_settings;
+    ImageView personal_settings, back;
     Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,7 @@ public class settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         //        hide the actionbar
         getSupportActionBar().hide();
-
+        back = findViewById(R.id.back);
         logout = findViewById(R.id.logout);
         personal_settings = findViewById(R.id.personal_settings);
 
@@ -27,6 +27,14 @@ public class settings extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), personalsettings.class);
                 startActivity(i);
+            }
+        });
+
+//        go back
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), dashboard.class));
             }
         });
 
