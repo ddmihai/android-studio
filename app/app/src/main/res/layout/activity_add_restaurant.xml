@@ -21,7 +21,7 @@
     <View
         android:id="@+id/view37"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="120dp"
         android:background="@drawable/gradient_background_orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,17 +41,6 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view37" />
-
-    <ImageView
-        android:id="@+id/imageView12"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/view37"
-        app:layout_constraintTop_toTopOf="@+id/view37"
-        app:srcCompat="@drawable/newplate" />
 
     <View
         android:id="@+id/view38"
@@ -87,12 +76,12 @@
         android:id="@+id/textView34"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
         android:text="Place Name"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView12"
-        app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toEndOf="@+id/view40"
         app:layout_constraintTop_toBottomOf="@+id/view37" />
 
@@ -114,11 +103,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="Place Name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/view40"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
     <EditText
         android:id="@+id/editText7"
@@ -235,5 +225,33 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/view39"
         app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view37"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView29"
+        app:layout_constraintTop_toTopOf="@+id/view37"
+        app:layout_constraintVertical_bias="0.2"
+        android:src="@drawable/ic_linked_camera_black_24dp" />
+
+    <TextView
+        android:id="@+id/textView67"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Add picture"
+        app:layout_constraintEnd_toEndOf="@+id/view37"
+        app:layout_constraintHorizontal_bias="0.68"
+        app:layout_constraintStart_toEndOf="@+id/textView58"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

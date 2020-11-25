@@ -48,7 +48,7 @@
         android:id="@+id/tv_details"
         android:layout_width="346dp"
         android:layout_height="130dp"
-        android:layout_marginBottom="252dp"
+        android:layout_marginBottom="272dp"
         android:background="@drawable/second_border_text"
         android:padding="10dp"
 
@@ -199,31 +199,20 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_details" />
 
     <TextView
-        android:id="@+id/textView67"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="321dp"
-        android:layout_marginRight="321dp"
-        android:text="Location "
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView66" />
-
-    <TextView
         android:id="@+id/textView68"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginRight="297dp"
         android:text="Location "
         android:textColor="#FF6D00"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_details"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView67" />
+        app:layout_constraintTop_toBottomOf="@+id/textView66" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
