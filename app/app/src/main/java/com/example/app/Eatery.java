@@ -3,7 +3,7 @@ package com.example.app;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Eatery implements Parcelable {
+public class Eatery implements Parcelable,Comparable<Eatery> {
     private String name;
     private String url;
     private String description;
@@ -21,6 +21,9 @@ public class Eatery implements Parcelable {
         this.location = location;
         this.serving = serving;
         this.type=type;
+    }
+    public int compareTo(Eatery e) {
+        return this.getName().compareTo(e.getName());
     }
 
     protected Eatery(Parcel in) {

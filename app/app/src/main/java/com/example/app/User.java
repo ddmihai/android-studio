@@ -10,7 +10,7 @@ public class User implements Parcelable {
     private String email;
     private String password;
     private String login;
-
+    private int type;
     private String url;
 
     public User() {
@@ -20,14 +20,22 @@ public class User implements Parcelable {
 //        password=null;
 //        login=null;
     }
-    public User(String fName, String lName, String email, String password, String login, String url){
+    public User(String fName, String lName, String email, String password, String login, String url, int type){
         this.fName=fName;
         this.lName=lName;
         this.email=email;
         this.password=password;
         this.login=login;
-
         this.url=url;
+        this.type=type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     protected User(Parcel in) {
