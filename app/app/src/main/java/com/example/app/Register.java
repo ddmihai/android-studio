@@ -96,7 +96,7 @@ public class Register extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             String downloadURL = uri.toString();
-                                            User user = new User(fn, ln,mail,pwd, log, downloadURL);
+                                            User user = new User(fn, ln,mail,pwd, log, downloadURL,1);
                                             dbref.child(dbref.push().getKey()).setValue(user);
                                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
 

@@ -17,6 +17,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener {
     ImageView back;
@@ -24,6 +26,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
     ArrayList<Eatery> list=new ArrayList<>();
     DatabaseReference dbref;
     RecycleView_Adapter adapter;
+    String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         getSupportActionBar().hide();
         back = findViewById(R.id.back);
         rv=findViewById(R.id.rv_l);
+        type=getIntent().getStringExtra("Type");
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
         dbref= FirebaseDatabase.getInstance().getReference("Eatery");
         dbref.addValueEventListener(new ValueEventListener() {
@@ -39,9 +43,11 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     Eatery e = dss.getValue(Eatery.class);
-                    list.add(e);
+                    if(e.getType().equals(type))
+                        list.add(e);
 
                 }
+                Collections.sort(list);
                 adapter=new RecycleView_Adapter(list,RecycleView.this);
                 rv.setAdapter(adapter);
             }

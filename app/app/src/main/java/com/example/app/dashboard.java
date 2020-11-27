@@ -42,7 +42,10 @@ public class dashboard extends AppCompatActivity {
         e_restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), RecycleView.class));
+                Intent i =new Intent(getBaseContext(),RecycleView.class);
+                i.putExtra("Type","Restaurant");
+                startActivity(i);
+
             }
         });
 
@@ -50,7 +53,9 @@ public class dashboard extends AppCompatActivity {
         e_streetfood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), RecycleView.class));
+                Intent i =new Intent(getBaseContext(),RecycleView.class);
+                i.putExtra("Type","Street Food");
+                startActivity(i);
             }
         });
 
