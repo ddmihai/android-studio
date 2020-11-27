@@ -1,9 +1,8 @@
 package com.example.app;
 
+import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import java.io.Serializable;
 
 public class User implements Parcelable {
     private String fName;
@@ -11,6 +10,9 @@ public class User implements Parcelable {
     private String email;
     private String password;
     private String login;
+
+    private String url;
+
     public User() {
 //        name=null;
 //        lname=null;
@@ -18,12 +20,14 @@ public class User implements Parcelable {
 //        password=null;
 //        login=null;
     }
-    public User(String fName, String lName, String email, String password, String login){
+    public User(String fName, String lName, String email, String password, String login, String url){
         this.fName=fName;
         this.lName=lName;
         this.email=email;
         this.password=password;
         this.login=login;
+
+        this.url=url;
     }
 
     protected User(Parcel in) {
@@ -32,6 +36,7 @@ public class User implements Parcelable {
         email = in.readString();
         password = in.readString();
         login = in.readString();
+        url = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -86,6 +91,14 @@ public class User implements Parcelable {
         this.login = login;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -98,5 +111,6 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(password);
         dest.writeString(login);
+        dest.writeString(url);
     }
 }

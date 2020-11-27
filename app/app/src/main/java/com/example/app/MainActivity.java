@@ -45,7 +45,12 @@ public class MainActivity extends AppCompatActivity {
         log_email = findViewById(R.id.log_email);
         log_pwd = findViewById(R.id.log_pwd);
 
-
+        if(mAuth.getCurrentUser()!=null)
+        {
+            startActivity(new Intent(getApplicationContext(),dashboard.class));
+            //Toast.makeText(MainActivity.this,"Opening your dashboard",Toast.LENGTH_SHORT).show();
+            finish();
+        }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
