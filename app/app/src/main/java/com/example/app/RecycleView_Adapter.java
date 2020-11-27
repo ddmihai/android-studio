@@ -3,22 +3,25 @@ package com.example.app;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapter.holder>
 {
-    public RecycleView_Adapter(ArrayList<User> list,holder.OnCardClickedListener _listener) {
+    public RecycleView_Adapter(ArrayList<Eatery> list,holder.OnCardClickedListener _listener) {
         this.list = list;
         listener=_listener;
     }
 
-    ArrayList<User> list;
+    ArrayList<Eatery> list;
     holder.OnCardClickedListener listener;
     @NonNull
     @Override
@@ -30,8 +33,9 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
 
     @Override
     public void onBindViewHolder(@NonNull holder hold, int position) {
-        hold.tv.setText(list.get(position).getfName());
-        //Picasso.get().load(list.get(position).getUrl()).fit().into(hold.iv);
+        hold.tv.setText(list.get(position).getName());
+        hold.tv2.setText(list.get(position).getDescription());
+        Picasso.get().load((list.get(position)).getUrl()).fit().into(hold.iv);
     }
 
     @Override
@@ -42,13 +46,15 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
     public static class holder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         ImageView iv;
-        TextView tv;
+        TextView tv,tv2;
+
         OnCardClickedListener listener;
 
         public holder(@NonNull View itemView, OnCardClickedListener _listener) {
             super(itemView);
             iv=itemView.findViewById(R.id.iv_card);
             tv=itemView.findViewById(R.id.tv_card);
+            tv2=itemView.findViewById(R.id.tv_card2);
             listener=_listener;
             itemView.setOnClickListener(this);
 

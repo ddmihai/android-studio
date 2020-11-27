@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class dashboard extends AppCompatActivity {
     Button settings, e_restaurant, e_streetfood, logout, addRestaurant, addStreetfood;
 
@@ -56,6 +58,7 @@ public class dashboard extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
                 Toast.makeText(getBaseContext(), "Logout Successful!", Toast.LENGTH_SHORT).show();
             }

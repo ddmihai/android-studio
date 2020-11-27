@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener {
     ImageView back;
     RecyclerView rv;
-    ArrayList<User> list=new ArrayList<>();
+    ArrayList<Eatery> list=new ArrayList<>();
     DatabaseReference dbref;
     RecycleView_Adapter adapter;
     @Override
@@ -33,13 +33,13 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         back = findViewById(R.id.back);
         rv=findViewById(R.id.rv_l);
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
-        dbref= FirebaseDatabase.getInstance().getReference("_user_");
+        dbref= FirebaseDatabase.getInstance().getReference("Eatery");
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
-                    User user = dss.getValue(User.class);
-                    list.add(user);
+                    Eatery e = dss.getValue(Eatery.class);
+                    list.add(e);
 
                 }
                 adapter=new RecycleView_Adapter(list,RecycleView.this);
@@ -63,7 +63,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
     @Override
     public void OnCardClickedListener(int i) {
         Intent intent=new Intent(RecycleView.this,Details.class);
-        intent.putExtra("User",list.get(i));
+        intent.putExtra("Eatery",list.get(i));
         startActivity(intent);
     }
 

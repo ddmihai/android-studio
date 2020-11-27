@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class Details extends AppCompatActivity {
 
     ImageView iv, info, back;
@@ -28,10 +30,10 @@ public class Details extends AppCompatActivity {
         read=findViewById(R.id.btn_r);
         add=findViewById(R.id.btn_ar);
         reservation=findViewById(R.id.btn_res);
-        User u=getIntent().getParcelableExtra("User");
-        //Picasso.get().load(list.get(position).getUrl()).fit().into(hold.iv);
-        name.setText(u.getfName());
-        desc.setText(u.getlName());
+        Eatery e=getIntent().getParcelableExtra("Eatery");
+        Picasso.get().load(e.getUrl()).fit().into(iv);
+        name.setText(e.getName());
+        desc.setText(e.getDescription());
 
 //        get info page
         info.setOnClickListener(new View.OnClickListener() {
