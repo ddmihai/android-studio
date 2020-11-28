@@ -141,16 +141,7 @@ public class add_restaurant extends AppCompatActivity {
         }
     }
 
-    /*@Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        //verify the image pick
-        if(requestCode == REQUEST && resultCode == RESULT_OK && data.getData()!=null)
-        {
-            url = data.getData();
-            Picasso.with(this).load(url).into(img2) ;
-        }
-    }*/
+
 
     private String getExt(Uri uri){
         ContentResolver resolver= getContentResolver();
