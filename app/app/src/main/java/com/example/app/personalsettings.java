@@ -8,14 +8,21 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,10 +38,9 @@ public class personalsettings extends AppCompatActivity {
     Uri url;
     ImageView back, avatar;
     EditText fname, lname, login, email, password;
-    Button confirm;
+    Button confirm,edit1,edit2,edit3,edit4,edit5;
     DatabaseReference dbref;
     StorageReference sref = FirebaseStorage.getInstance().getReference("usersProfile");
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,25 +48,68 @@ public class personalsettings extends AppCompatActivity {
         //        hide the actionbar
         getSupportActionBar().hide();
 
-        back = findViewById(R.id.back);
-        fname = findViewById(R.id.fname);
-        lname = findViewById(R.id.lname);
-        login = findViewById(R.id.login);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
 
+        back = findViewById(R.id.back);
+        fname = findViewById(R.id.et_fn);
+        lname = findViewById(R.id.et_ln);
+        login = findViewById(R.id.et_login);
+        email = findViewById(R.id.et_email);
+        password = findViewById(R.id.et_password);
+
+        confirm=findViewById(R.id.btn_confirm);
+        edit1=findViewById(R.id.btn_edit);
+        edit2=findViewById(R.id.btn_edit2);
+        edit3=findViewById(R.id.btn_edit3);
+        edit4=findViewById(R.id.btn_edit4);
+        edit5=findViewById(R.id.btn_edit5);
+        edit1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                fname.setVisibility(View.VISIBLE);
+                edit1.setVisibility(View.INVISIBLE);
+            }
+        });
+        edit2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lname.setVisibility(View.VISIBLE);
+                edit2.setVisibility(View.INVISIBLE);
+            }
+        });
+        edit3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email.setVisibility(View.VISIBLE);
+                edit3.setVisibility(View.INVISIBLE);
+            }
+        });
+        edit4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login.setVisibility(View.VISIBLE);
+                edit4.setVisibility(View.INVISIBLE);
+            }
+        });
+        edit5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                password.setVisibility(View.VISIBLE);
+                edit5.setVisibility(View.INVISIBLE);
+            }
+        });
         avatar = findViewById(R.id.iv_avatar);
- //       go back
+        //       go back
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),settings.class ));
+                startActivity(new Intent(getBaseContext(), settings.class));
             }
         });
-    }
-}
+
+
 //        //db reference
-//        dbref = FirebaseDatabase.getInstance().getReference("_user_");
+        dbref = FirebaseDatabase.getInstance().getReference("_user_");
 //
 ////        go back
 //        back.setOnClickListener(new View.OnClickListener() {
@@ -83,45 +132,74 @@ public class personalsettings extends AppCompatActivity {
 //
 //            }
 //        });
-//        confirm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                final String fn=fname.getText().toString().trim();
-//                final String ln=lname.getText().toString().trim();
-//                final String log=login.getText().toString().trim();
-//                final String mail=email.getText().toString().trim();
-//                final String pwd=password.getText().toString().trim();
-//                if(TextUtils.isEmpty(fn))  {fname.setError("First Name is required"); return;}
-//                if(TextUtils.isEmpty(ln))  {lname.setError("Last Name is required");return;}
-//                if(TextUtils.isEmpty(log)) {login.setError("Username is required");return;}
-//                if(TextUtils.isEmpty(mail)){email.setError("Email is required");return;}
-//                if(TextUtils.isEmpty(pwd)) {password.setError("Password is required");return;}
-//                if(pwd.length()<6){password.setError("Password needs to be 6 characters or more");return;}
-//
-//                dbref.orderByChild("email").equalTo(((logged) getApplication()).getLogged().getEmail()).addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        dbref.child(snapshot.getKey()).child("fName").setValue(fn);
-//                        dbref.child(snapshot.getKey()).child("lName").setValue(ln);
-//                        dbref.child(snapshot.getKey()).child("login").setValue(log);
-//                        dbref.child(snapshot.getKey()).child("password").setValue(pwd);
-//                        dbref.child(snapshot.getKey()).child("email").setValue(mail);
-//
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//
-//
-//
-//            }
-//        });
-//
-//    }
-//
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String fn = fname.getText().toString().trim();
+                final String ln = lname.getText().toString().trim();
+                final String log = login.getText().toString().trim();
+                final String mail = email.getText().toString().trim();
+                final String pwd = password.getText().toString().trim();
+               dbref.addValueEventListener(new ValueEventListener() {
+
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for(DataSnapshot dss:snapshot.getChildren()) {
+                            User u = dss.getValue(User.class);
+                            if (u.equals(((logged) getApplication()).getLogged())) {
+                                if (fname.getVisibility() == View.VISIBLE) {
+                                    if (TextUtils.isEmpty(fn)) {
+                                        fname.setError("First Name is required");
+                                        return;
+                                    } else dbref.child(dss.getKey()).child("fName").setValue(fn);
+                                }
+
+                                if (lname.getVisibility() == View.VISIBLE) {
+                                    if (TextUtils.isEmpty(ln)) {
+                                        lname.setError("Last Name is required");
+                                        return;
+                                    } else dbref.child(dss.getKey()).child("lName").setValue(ln);
+                                }
+                                if (email.getVisibility() == View.VISIBLE) {
+                                    if (TextUtils.isEmpty(mail)) {
+                                        email.setError("Email is required");
+                                        return;
+                                    } else dbref.child(dss.getKey()).child("email").setValue(mail);
+                                }
+                                if (login.getVisibility() == View.VISIBLE) {
+                                    if (TextUtils.isEmpty(log)) {
+                                        login.setError("First Name is required");
+                                        return;
+                                    } else dbref.child(dss.getKey()).child("login").setValue(log);
+                                }
+                                if (password.getVisibility() == View.VISIBLE) {
+                                    if (TextUtils.isEmpty(pwd) || pwd.length() < 6) {
+                                        password.setError("Password of 6 or more characters is required");
+                                        return;
+                                    } else
+                                        dbref.child(dss.getKey()).child("password").setValue(pwd);
+                                }
+
+
+                            }
+                        }
+                    }
+
+
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+            }
+        });
+
+    }
+}
+
 //
 //
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

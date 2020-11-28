@@ -121,4 +121,21 @@ public class User implements Parcelable {
         dest.writeString(login);
         dest.writeString(url);
     }
+    public boolean equals(User u) {
+        if(!this.fName.equals(u.fName))
+            return false;
+        if(!this.lName.equals(u.lName))
+            return false;
+        if(!this.login.equals(u.login))
+            return false;
+        if(!this.email.equals(u.email))
+            return false;
+        if(!this.password.equals(u.password))
+            return false;
+        if(this.type!=(u.type))
+            return false;
+        if(!this.url.equals(u.url))
+            return false;
+        return true;
+    }
 }
