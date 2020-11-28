@@ -49,5 +49,13 @@ public class Details extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), RecycleView.class));
             }
         });
+
+//        add reservation intent
+        reservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getBaseContext(), reservation.class));
+            }
+        });
     }
 }
