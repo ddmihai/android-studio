@@ -88,7 +88,7 @@ public class Register extends AppCompatActivity {
                         if(task.isSuccessful())
                         {
                             Toast.makeText(Register.this,"User Created",Toast.LENGTH_SHORT).show();
-                            final StorageReference reference = sref.child(fn+getExt(url));
+                            final StorageReference reference = sref.child(fn+"."+getExt(url));
                             reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
