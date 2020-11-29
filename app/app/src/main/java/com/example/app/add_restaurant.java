@@ -98,7 +98,7 @@ public class add_restaurant extends AppCompatActivity {
                 else if(nveg.isChecked())
                         s="Non-Vegetarian";
                 else  Toast.makeText(add_restaurant.this,"Select serving type",Toast.LENGTH_SHORT).show();
-                final StorageReference reference = sref.child(n+getExt(url));
+                final StorageReference reference = sref.child(n+"."+getExt(url));
                 reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {

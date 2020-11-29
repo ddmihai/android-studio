@@ -23,12 +23,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.377"
+        app:layout_constraintHorizontal_bias="0.371"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679" />
+        app:layout_constraintVertical_bias="0.683" />
 
     <Button
         android:id="@+id/btn_edit5"
@@ -245,11 +246,9 @@
         android:ems="10"
         android:hint="@string/login"
         android:inputType="textPersonName"
-        android:text="Edit"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/view20"
-        app:layout_constraintTop_toBottomOf="@+id/textView44"
-        tools:text="Edit" />
+        app:layout_constraintTop_toBottomOf="@+id/textView44" />
 
     <EditText
         android:id="@+id/et_password"
@@ -260,7 +259,6 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:text="Edit"
         android:visibility="invisible"
         app:layout_constraintStart_toEndOf="@+id/view20"
         app:layout_constraintTop_toBottomOf="@+id/textView45" />
@@ -290,7 +288,7 @@
         android:id="@+id/btn_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.377"
@@ -303,7 +301,7 @@
         android:id="@+id/btn_edit2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.377"
