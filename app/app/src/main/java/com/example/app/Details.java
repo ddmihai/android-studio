@@ -30,7 +30,7 @@ public class Details extends AppCompatActivity {
         read=findViewById(R.id.btn_r);
         add=findViewById(R.id.btn_ar);
         reservation=findViewById(R.id.btn_res);
-        Eatery e=getIntent().getParcelableExtra("Eatery");
+        final Eatery e=getIntent().getParcelableExtra("Eatery");
         Picasso.get().load(e.getUrl()).fit().into(iv);
         name.setText(e.getName());
         desc.setText(e.getDescription());
@@ -54,7 +54,9 @@ public class Details extends AppCompatActivity {
         reservation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), reservation.class));
+                Intent intent=new Intent(Details.this,reservation.class);
+                intent.putExtra("Eatery",e);
+                startActivity(intent);
             }
         });
     }

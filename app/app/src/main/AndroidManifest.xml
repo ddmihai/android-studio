@@ -22,7 +22,7 @@
         <activity android:name=".dashboard" />
         <activity android:name=".Details" />
         <activity android:name=".Register" />
-        <activity android:name=".add_restaurant" />
+        <activity android:name=".add_eatery" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
