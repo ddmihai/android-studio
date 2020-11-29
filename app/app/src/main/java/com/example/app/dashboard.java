@@ -3,7 +3,6 @@ package com.example.app;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -92,7 +91,9 @@ public class dashboard extends AppCompatActivity {
         addRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), add_restaurant.class));
+                Intent i =new Intent(getBaseContext(),add_eatery.class);
+                i.putExtra("Type","Restaurant");
+                startActivity(i);
             }
         });
 
@@ -101,7 +102,9 @@ public class dashboard extends AppCompatActivity {
         addStreetfood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), add_restaurant.class));
+                Intent i =new Intent(getBaseContext(),add_eatery.class);
+                i.putExtra("Type","Street Food");
+                startActivity(i);
             }
         });
 

@@ -4,19 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".add_restaurant">
-
-    <RadioButton
-        android:id="@+id/rb_restaurant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="23dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginTop="15dp"
-        android:text=" Restaurant "
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/rb_street"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
+    tools:context=".add_eatery">
 
     <View
         android:id="@+id/view37"
@@ -85,18 +73,6 @@
         app:layout_constraintStart_toEndOf="@+id/view40"
         app:layout_constraintTop_toBottomOf="@+id/view37" />
 
-    <RadioButton
-        android:id="@+id/rb_street"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/street_food"
-        android:textColor="#000000"
-        app:layout_constraintStart_toEndOf="@+id/view40"
-        app:layout_constraintTop_toBottomOf="@+id/et_name" />
-
     <EditText
         android:id="@+id/et_name"
         android:layout_width="wrap_content"
@@ -129,12 +105,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="75dp"
         android:text="Please tell us more about this place"
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/view39"
-        app:layout_constraintTop_toBottomOf="@+id/rb_restaurant" />
+        app:layout_constraintTop_toBottomOf="@+id/et_name" />
 
     <TextView
         android:id="@+id/textView58"

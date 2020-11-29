@@ -143,7 +143,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="5dp"
-        android:text="Please be aware the User will be able to do comments on the review section of an Eatery"
+        android:text="Please be aware the User will be able to do comments on the review section of a Restaurant"
         app:layout_constraintStart_toStartOf="@+id/view52"
         app:layout_constraintTop_toBottomOf="@+id/editText9" />
 

@@ -15,7 +15,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,12 +27,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
-public class add_restaurant extends AppCompatActivity {
+public class add_eatery extends AppCompatActivity {
 
     public static final int SELECT_PICTURE = 1;
     //public static final int REQUEST = 1;
     public static final String URL = "URL";
-    String t;
     String s;
     Uri url;
     EditText name,location,description;
@@ -51,8 +49,7 @@ public class add_restaurant extends AppCompatActivity {
         name=findViewById(R.id.et_name);
         location=findViewById(R.id.et_location);
         description=findViewById(R.id.et_description);
-        street=(RadioButton)findViewById(R.id.rb_street);
-        restaurant=(RadioButton)findViewById(R.id.rb_restaurant);
+        final String type=getIntent().getStringExtra("Type");
         veg=(RadioButton)findViewById(R.id.rb_veg);
         nveg=(RadioButton)findViewById(R.id.rb_nveg);
         add_image = findViewById(R.id.iv_add_image);
@@ -88,16 +85,11 @@ public class add_restaurant extends AppCompatActivity {
                 final String l=location.getText().toString().trim();
                 if(TextUtils.isEmpty(l))  {location.setError(" A location is required"); return;}
 
-                if(street.isChecked())
-                    t="Street Food";
-                else if(restaurant.isChecked())
-                        t="Restaurant";
-                else Toast.makeText(add_restaurant.this,"Select place type",Toast.LENGTH_SHORT).show();
                 if(veg.isChecked())
                     s="Vegetarian";
                 else if(nveg.isChecked())
                         s="Non-Vegetarian";
-                else  Toast.makeText(add_restaurant.this,"Select serving type",Toast.LENGTH_SHORT).show();
+                else  Toast.makeText(add_eatery.this,"Select serving type",Toast.LENGTH_SHORT).show();
                 final StorageReference reference = sref.child(n+"."+getExt(url));
                 reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -106,9 +98,10 @@ public class add_restaurant extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String downloadURL = uri.toString();
-                                Eatery e=new Eatery(n,downloadURL,d,l,s,t);
+                                Eatery e=new Eatery(n,downloadURL,d,l,s,type);
                                 dbref.child(dbref.push().getKey()).setValue(e);
-                                Toast.makeText(add_restaurant.this,"Eatery added !",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(add_eatery.this,"Eatery added !",Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getBaseContext(),dashboard.class));
 
 
                             }
