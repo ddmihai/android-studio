@@ -228,30 +228,16 @@
 
     <ImageView
         android:id="@+id/iv_add_image"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="120dp"
         android:layout_marginStart="110dp"
         android:layout_marginLeft="110dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/view37"
+        android:src="@drawable/ic_linked_camera_black_24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toEndOf="@+id/textView29"
-        app:layout_constraintTop_toTopOf="@+id/view37"
-        app:layout_constraintVertical_bias="0.2"
-        android:src="@drawable/ic_linked_camera_black_24dp" />
-
-    <TextView
-        android:id="@+id/textView67"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="Add picture"
-        app:layout_constraintEnd_toEndOf="@+id/view37"
-        app:layout_constraintHorizontal_bias="0.68"
-        app:layout_constraintStart_toEndOf="@+id/textView58"
-        app:layout_constraintTop_toBottomOf="@+id/iv_add_image" />
+        app:layout_constraintTop_toTopOf="@+id/view37" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
