@@ -37,7 +37,6 @@ public class Register extends AppCompatActivity {
     public static final String URL = "URL";
     Uri url;
 
-
     EditText fname, lname, login, email, password;
     Button signup;
     ImageView chooseprofilepic;
@@ -111,7 +110,7 @@ public class Register extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-
+                                    Toast.makeText(Register.this,"Picture not selected !",Toast.LENGTH_SHORT).show();
                                 }
                             });
 
@@ -132,7 +131,6 @@ public class Register extends AppCompatActivity {
         chooseprofilepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -168,7 +166,7 @@ public class Register extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //verify the image pick
-        if(requestCode == SELECT_PICTURE)
+        if(requestCode == SELECT_PICTURE )
         {
             url = data.getData();
             Picasso.get().load(url).into(chooseprofilepic) ;

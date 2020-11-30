@@ -43,13 +43,14 @@ public class personalsettings extends AppCompatActivity {
     ImageView back, avatar;
     EditText fname, lname, login, email, password;
     Button confirm, edit1, edit2, edit3, edit4, edit5;
-    DatabaseReference dbref;
+    int ok=0;
+    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("_user_");;
     StorageReference sref = FirebaseStorage.getInstance().getReference("usersProfile");
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //verify the image pick
-        if (requestCode == SELECT_PICTURE) {
+        if (requestCode == SELECT_PICTURE && resultCode==RESULT_OK && data!=null) {
             url = data.getData();
             Picasso.get().load(url).into(avatar);
         }
@@ -150,7 +151,7 @@ public class personalsettings extends AppCompatActivity {
 
 
 //        //db reference
-        dbref = FirebaseDatabase.getInstance().getReference("_user_");
+
 
 //        go back
         back.setOnClickListener(new View.OnClickListener() {
@@ -162,10 +163,30 @@ public class personalsettings extends AppCompatActivity {
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ok=1;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select picture"), SELECT_PICTURE);
+
+            }
+        });
+
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds:snapshot.getChildren())
+                {
+                    User u=ds.getValue(User.class);
+                    if(u.equals(((logged)getApplication()).getLogged())) {
+                        path = ds.getKey();
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });
@@ -177,23 +198,7 @@ public class personalsettings extends AppCompatActivity {
                 final String log = login.getText().toString().trim();
                 final String mail = email.getText().toString().trim();
                 final String pwd = password.getText().toString().trim();
-                dbref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot dss : snapshot.getChildren()) {
-                            User u = dss.getValue(User.class);
-                            if (u.equals(((logged) getApplication()).getLogged())) {
-                                path = dss.getKey();
-                                break;
-                            }
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
 
                 if (fname.getVisibility() == View.VISIBLE) {
                     if (TextUtils.isEmpty(fn)) {
@@ -233,20 +238,23 @@ public class personalsettings extends AppCompatActivity {
                     reauth(mail, ((logged) getApplication()).getLogged().getPassword());
                 else if (password.getVisibility() == View.VISIBLE)
                     reauth(((logged) getApplication()).getLogged().getEmail(), pwd);
-                final StorageReference reference = sref.child(((logged) getApplication()).getLogged().getEmail()+"."+getExt(url));
-                reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String downloadURL = uri.toString();
-                                dbref.child(path).child("url").setValue(downloadURL);
-                                //((logged) getApplication()).getLogged().setUrl(downloadURL);
-                            }
-                        });
-                    }
-                });
+                if(ok==1) {
+                    final StorageReference reference = sref.child(((logged) getApplication()).getLogged().getEmail() + "." + getExt(url));
+                    reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    String downloadURL = uri.toString();
+                                    dbref.child(path).child("url").setValue(downloadURL);
+                                    //((logged) getApplication()).getLogged().setUrl(downloadURL);
+                                }
+                            });
+                        }
+                    });
+                }
+
                 Toast.makeText(personalsettings.this, "Details Updated", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
 
