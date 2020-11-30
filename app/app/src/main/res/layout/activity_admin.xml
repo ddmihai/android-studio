@@ -124,7 +124,7 @@
         app:layout_constraintTop_toTopOf="@+id/view52" />
 
     <EditText
-        android:id="@+id/editText9"
+        android:id="@+id/et_criticmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -145,10 +145,10 @@
         android:layout_marginTop="5dp"
         android:text="Please be aware the User will be able to do comments on the review section of a Restaurant"
         app:layout_constraintStart_toStartOf="@+id/view52"
-        app:layout_constraintTop_toBottomOf="@+id/editText9" />
+        app:layout_constraintTop_toBottomOf="@+id/et_criticmail" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_promotion"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

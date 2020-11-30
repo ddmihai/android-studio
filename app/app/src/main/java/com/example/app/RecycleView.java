@@ -24,9 +24,14 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
     ImageView back;
     RecyclerView rv;
     ArrayList<Eatery> list=new ArrayList<>();
+    ArrayList<Booking> listB=new ArrayList<>();
     DatabaseReference dbref;
     RecycleView_Adapter adapter;
+    BookingAdapter adapterB;
     String type;
+    String path;
+    int code;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,28 +40,59 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         getSupportActionBar().hide();
         back = findViewById(R.id.back);
         rv=findViewById(R.id.rv_l);
-        type=getIntent().getStringExtra("Type");
+
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
-        dbref= FirebaseDatabase.getInstance().getReference("Eatery");
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dss : snapshot.getChildren()) {
-                    Eatery e = dss.getValue(Eatery.class);
-                    if(e.getType().equals(type))
-                        list.add(e);
+        path=getIntent().getStringExtra("Path");
+        code=getIntent().getIntExtra("Code",0);
+        dbref= FirebaseDatabase.getInstance().getReference(path);
+        if(code==1) {
+            type=getIntent().getStringExtra("Type");
+            dbref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dss : snapshot.getChildren()) {
+                        Eatery e = dss.getValue(Eatery.class);
+                        if (e.getType().equals(type))
+                            list.add(e);
+
+                    }
+                    Collections.sort(list);
+                    adapter = new RecycleView_Adapter(list, RecycleView.this);
+                    rv.setAdapter(adapter);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-                Collections.sort(list);
-                adapter=new RecycleView_Adapter(list,RecycleView.this);
-                rv.setAdapter(adapter);
-            }
+            });
+        }
+        else if(code==2)
+        {
+            dbref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dss : snapshot.getChildren()) {
+                        Booking b = dss.getValue(Booking.class);
+                        if (b.getAddress().equals(((logged) getApplication()).getLogged().getEmail()))
+                        {
+                            listB.add(b);
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                        }
+
+                    }
+                    Collections.sort(list);
+                    adapterB = new BookingAdapter(listB);
+                    rv.setAdapter(adapterB);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
 //        back btn
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,9 +104,12 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
 
     @Override
     public void OnCardClickedListener(int i) {
-        Intent intent=new Intent(RecycleView.this,Details.class);
-        intent.putExtra("Eatery",list.get(i));
-        startActivity(intent);
+        if(code==1) {
+            Intent intent = new Intent(RecycleView.this, Details.class);
+            intent.putExtra("Eatery", list.get(i));
+            startActivity(intent);
+
+        }
     }
 
 }
