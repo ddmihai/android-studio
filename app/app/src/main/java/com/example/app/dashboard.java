@@ -50,10 +50,18 @@ public class dashboard extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), settings.class);
-                startActivity(i);
-
+                if(((logged) getApplication()).getLogged().getType()==1) {
+                    Intent i = new Intent(getBaseContext(), personalsettings.class);
+                    startActivity(i);
+                }
+                else if(((logged) getApplication()).getLogged().getType()==3)
+                {
+                    Intent i = new Intent(getBaseContext(), personalSettingsAdmin.class);
+                    startActivity(i);
+                }
             }
+
+
         });
 
 //        explore restaurants
@@ -61,6 +69,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(getBaseContext(),RecycleView.class);
+                i.putExtra("Path","Eatery");
+                i.putExtra("Code",1);
                 i.putExtra("Type","Restaurant");
                 startActivity(i);
 
@@ -72,6 +82,8 @@ public class dashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i =new Intent(getBaseContext(),RecycleView.class);
+                i.putExtra("Path","Eatery");
+                i.putExtra("Code",1);
                 i.putExtra("Type","Street Food");
                 startActivity(i);
             }
