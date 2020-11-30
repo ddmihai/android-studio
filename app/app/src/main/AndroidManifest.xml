@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".reservation"></activity>
+        <activity android:name=".add_reviews"></activity>
+        <activity android:name=".reservation" />
         <activity android:name=".admin" />
         <activity android:name=".info" />
         <activity android:name=".personalSettingsAdmin" />

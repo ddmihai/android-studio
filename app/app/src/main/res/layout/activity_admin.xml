@@ -38,7 +38,9 @@
         android:layout_width="350dp"
         android:layout_height="250dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/gradient_background_orange"
+        android:background="@drawable/roundgradient"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view50" />
 
@@ -47,8 +49,10 @@
         android:layout_width="350dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/gradient_background_orange"
+        android:background="@drawable/roundgradient"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view54" />
 
     <View
@@ -79,10 +83,10 @@
         android:id="@+id/textView69"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="10dp"
-        android:text="Promote a user to critic or add a new place"
+        android:layout_marginStart="92dp"
+        android:layout_marginLeft="92dp"
+        android:layout_marginTop="15dp"
+        android:text="Promote a user to critic "
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView65" />
@@ -91,12 +95,12 @@
         android:id="@+id/imageView12"
         android:layout_width="100dp"
         android:layout_height="90dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginLeft="76dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         app:layout_constraintStart_toEndOf="@+id/textView69"
         app:layout_constraintTop_toTopOf="@+id/view50"
-        app:srcCompat="@drawable/star" />
+        app:srcCompat="@drawable/rench" />
 
     <ImageView
         android:id="@+id/back"
@@ -113,9 +117,9 @@
         android:id="@+id/textView70"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="30dp"
         android:text="Promote User to Critic"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -125,11 +129,11 @@
 
     <EditText
         android:id="@+id/et_criticmail"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Enter User email address"
         android:inputType="textPersonName"
@@ -140,21 +144,21 @@
         android:id="@+id/textView71"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
+        android:layout_marginTop="8dp"
         android:text="Please be aware the User will be able to do comments on the review section of a Restaurant"
         app:layout_constraintStart_toStartOf="@+id/view52"
         app:layout_constraintTop_toBottomOf="@+id/et_criticmail" />
 
     <Button
         android:id="@+id/btn_promotion"
-        android:layout_width="150dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginLeft="72dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bordered_button"
+        android:background="@drawable/round_button"
         android:text="Promote "
         android:textAllCaps="false"
         android:textColor="#FFFFFF"

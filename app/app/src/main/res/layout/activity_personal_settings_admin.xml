@@ -296,7 +296,7 @@
         app:layout_constraintEnd_toEndOf="@+id/view33"
         app:layout_constraintStart_toEndOf="@+id/textView52"
         app:layout_constraintTop_toTopOf="@+id/view33"
-        app:srcCompat="@drawable/star" />
+        app:srcCompat="@drawable/rench" />
 
     <ImageView
         android:id="@+id/back"

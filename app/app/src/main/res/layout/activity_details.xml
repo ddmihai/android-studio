@@ -6,24 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Details">
 
-    <View
-        android:id="@+id/view48"
-        android:layout_width="360dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/gradient_background_orange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view47" />
-
-    <View
-        android:id="@+id/view49"
-        android:layout_width="360dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/gradient_background_orange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view48" />
-
     <ImageView
         android:id="@+id/iv_details"
         android:layout_width="fill_parent"
@@ -35,20 +17,10 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_details"
-        app:layout_constraintEnd_toEndOf="@+id/iv_details"
-        app:layout_constraintStart_toStartOf="@+id/iv_details"
-        app:layout_constraintTop_toTopOf="@+id/iv_details" />
-
-    <TextView
         android:id="@+id/tv_details"
         android:layout_width="346dp"
-        android:layout_height="130dp"
-        android:layout_marginBottom="170dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="160dp"
         android:background="@drawable/second_border_text"
 
         android:padding="10dp"
@@ -145,33 +117,9 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/tv_name"
-        app:layout_constraintHorizontal_bias="0.126"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/back" />
-
-    <TextView
-        android:id="@+id/textView64"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="33dp"
-        android:layout_marginLeft="33dp"
-        android:layout_marginTop="20dp"
-        android:text="Specific of food"
-        android:textColor="#000000"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_details" />
-
-    <View
-        android:id="@+id/view47"
-        android:layout_width="360dp"
-        android:layout_height="4dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/gradient_background_orange"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView64" />
 
     <TextView
         android:id="@+id/textView66"
@@ -179,15 +127,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="25dp"
         android:text="Place Name"
         android:textColor="#FF6D00"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView68"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_details"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_details" />
 
     <TextView
         android:id="@+id/textView68"
@@ -195,15 +140,36 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginEnd="297dp"
-        android:layout_marginRight="297dp"
         android:layout_marginBottom="20dp"
         android:text="Location "
         android:textColor="#FF6D00"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_details" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="45dp"
+        android:text="Specific"
+        android:textColor="#FF6D00"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView68"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView66" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

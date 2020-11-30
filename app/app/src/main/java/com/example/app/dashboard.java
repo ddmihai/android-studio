@@ -72,6 +72,7 @@ public class dashboard extends AppCompatActivity {
                 i.putExtra("Path","Eatery");
                 i.putExtra("Code",1);
                 i.putExtra("Type","Restaurant");
+                i.putExtra("Header",1);
                 startActivity(i);
 
             }
@@ -85,6 +86,7 @@ public class dashboard extends AppCompatActivity {
                 i.putExtra("Path","Eatery");
                 i.putExtra("Code",1);
                 i.putExtra("Type","Street Food");
+                i.putExtra("Header",2);
                 startActivity(i);
             }
         });

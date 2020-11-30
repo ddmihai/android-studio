@@ -25,14 +25,12 @@ public class Details extends AppCompatActivity {
         back = findViewById(R.id.back);
         info = findViewById(R.id.info);
         iv=findViewById(R.id.iv_details);
-        name=findViewById(R.id.tv_name);
         desc=findViewById(R.id.tv_details);
         read=findViewById(R.id.btn_r);
         add=findViewById(R.id.btn_ar);
         reservation=findViewById(R.id.btn_res);
         final Eatery e=getIntent().getParcelableExtra("Eatery");
         Picasso.get().load(e.getUrl()).fit().into(iv);
-        name.setText(e.getName());
         desc.setText(e.getDescription());
 
 //        get info page
@@ -57,6 +55,15 @@ public class Details extends AppCompatActivity {
                 Intent intent=new Intent(Details.this,reservation.class);
                 intent.putExtra("Eatery",e);
                 startActivity(intent);
+            }
+        });
+
+//        add review
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), add_reviews.class);
+                startActivity(i);
             }
         });
     }

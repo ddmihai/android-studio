@@ -21,7 +21,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener {
-    ImageView back;
+    ImageView back,header;
     RecyclerView rv;
     ArrayList<Eatery> list=new ArrayList<>();
     ArrayList<Booking> listB=new ArrayList<>();
@@ -39,11 +39,18 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         //        hide the actionbar
         getSupportActionBar().hide();
         back = findViewById(R.id.back);
+        header=findViewById(R.id.imageView15);
+
         rv=findViewById(R.id.rv_l);
 
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
         path=getIntent().getStringExtra("Path");
         code=getIntent().getIntExtra("Code",0);
+        int head=getIntent().getIntExtra("Header",0);
+        if(head==1)
+            header.setImageResource(R.drawable.restaurants);
+        else if(head==2)
+            header.setImageResource(R.drawable.streetfoodheader);
         dbref= FirebaseDatabase.getInstance().getReference(path);
         if(code==1) {
             type=getIntent().getStringExtra("Type");
@@ -69,6 +76,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         }
         else if(code==2)
         {
+            header.setImageResource(R.drawable.bookingheader);
             dbref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
