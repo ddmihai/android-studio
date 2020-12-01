@@ -43,15 +43,15 @@ public class dashboard extends AppCompatActivity {
             case 3: {type.setText("Administrator");break;}
         }
         Picasso.get().load(User.getUrl()).fit().into(avatar);
-        if(User.getType()==1)
+        if(User.getType()==1|| User.getType()==2)
             addRestaurant.setVisibility(View.INVISIBLE);
 
         //        go to settings page
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((logged) getApplication()).getLogged().getType()==1) {
-                    Intent i = new Intent(getBaseContext(), personalsettings.class);
+                if(((logged) getApplication()).getLogged().getType()==1||((logged) getApplication()).getLogged().getType()==2) {
+                    Intent i = new Intent(getBaseContext(), settings.class);
                     startActivity(i);
                 }
                 else if(((logged) getApplication()).getLogged().getType()==3)

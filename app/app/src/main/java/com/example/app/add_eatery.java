@@ -98,7 +98,7 @@ public class add_eatery extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String downloadURL = uri.toString();
-                                Eatery e=new Eatery(n,downloadURL,d,l,s,type);
+                                Eatery e=new Eatery(n,downloadURL,d,l,s,type,0,0);
                                 dbref.child(dbref.push().getKey()).setValue(e);
                                 Toast.makeText(add_eatery.this,"Eatery added !",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getBaseContext(),dashboard.class));

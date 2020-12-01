@@ -10,20 +10,20 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
     private String location;
     private String serving;
     private String type;
-
+    private float rating;
+    private int ratingNr;
     public Eatery() {
     }
 
-    public Eatery(String name, String url, String description, String location, String serving, String type) {
+    public Eatery(String name, String url, String description, String location, String serving, String type, float rating, int ratingNr) {
         this.name = name;
         this.url = url;
         this.description = description;
         this.location = location;
         this.serving = serving;
-        this.type=type;
-    }
-    public int compareTo(Eatery e) {
-        return this.getName().compareTo(e.getName());
+        this.type = type;
+        this.rating = rating;
+        this.ratingNr = ratingNr;
     }
 
     protected Eatery(Parcel in) {
@@ -33,6 +33,8 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
         location = in.readString();
         serving = in.readString();
         type = in.readString();
+        rating = in.readFloat();
+        ratingNr = in.readInt();
     }
 
     public static final Creator<Eatery> CREATOR = new Creator<Eatery>() {
@@ -46,6 +48,26 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
             return new Eatery[size];
         }
     };
+
+    public int getRatingNr() {
+        return ratingNr;
+    }
+
+    public void setRatingNr(int ratingNr) {
+        this.ratingNr = ratingNr;
+    }
+
+    public int compareTo(Eatery e) {
+        return this.getName().compareTo(e.getName());
+    }
+
+    public float getRating() {
+        return rating;
+    }
+
+    public void setRating(float rating) {
+        this.rating+= rating;;
+    }
 
     public String getType() {
         return type;
@@ -108,5 +130,7 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
         dest.writeString(location);
         dest.writeString(serving);
         dest.writeString(type);
+        dest.writeFloat(rating);
+        dest.writeInt(ratingNr);
     }
 }

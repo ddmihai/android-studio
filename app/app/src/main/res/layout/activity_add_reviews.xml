@@ -25,7 +25,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view66" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/iv_review_eatery"
         android:layout_width="fill_parent"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,18 +35,18 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/iv_review_user"
         android:layout_width="113dp"
         android:layout_height="121dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView74"
+        app:layout_constraintTop_toBottomOf="@+id/tv_eatery_location"
         app:srcCompat="@drawable/bordered_button" />
 
     <TextView
-        android:id="@+id/textView73"
+        android:id="@+id/tv_eatery_name"
         android:layout_width="235dp"
         android:layout_height="35dp"
         android:layout_marginStart="20dp"
@@ -57,10 +57,10 @@
         android:textSize="23dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_review_eatery" />
 
     <TextView
-        android:id="@+id/textView74"
+        android:id="@+id/tv_eatery_location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -70,7 +70,7 @@
         android:textColor="#000000"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView73" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_eatery_name" />
 
     <RatingBar
         android:id="@+id/ratingBar"
@@ -82,11 +82,11 @@
         android:layout_marginEnd="22dp"
         android:layout_marginRight="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView74" />
+        app:layout_constraintStart_toEndOf="@+id/iv_review_user"
+        app:layout_constraintTop_toBottomOf="@+id/tv_eatery_location" />
 
     <TextView
-        android:id="@+id/textView75"
+        android:id="@+id/tv_review_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -95,11 +95,11 @@
         android:text="Name of User"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
+        app:layout_constraintStart_toEndOf="@+id/iv_review_user"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
     <TextView
-        android:id="@+id/textView76"
+        android:id="@+id/tv_user_rank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
@@ -107,11 +107,11 @@
         android:layout_marginTop="15dp"
         android:text="@string/rank"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView14"
-        app:layout_constraintTop_toBottomOf="@+id/textView75" />
+        app:layout_constraintStart_toEndOf="@+id/iv_review_user"
+        app:layout_constraintTop_toBottomOf="@+id/tv_review_username" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/et_review"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:layout_marginStart="56dp"
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_review_user" />
 
     <View
         android:id="@+id/view64"
@@ -134,10 +134,10 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/gradient_background_orange"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/et_review" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_add_review"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
