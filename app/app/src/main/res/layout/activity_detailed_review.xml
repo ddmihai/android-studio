@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".user_profile">
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginLeft="136dp"
+        android:layout_marginTop="10dp"
+        android:rotation="180"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView66"
+        app:srcCompat="@drawable/like" />
+
+    <View
+        android:id="@+id/view68"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view61"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view49"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view49"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view47"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view48"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toEndOf="@+id/view49"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view70"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintEnd_toStartOf="@+id/view69"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view69"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintEnd_toStartOf="@+id/view68"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view47"
+        android:layout_width="4dp"
+        android:layout_height="fill_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/gradient_background_orange"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="52dp"
+        android:text="Profile "
+        android:textColor="#FF6D00"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/view48"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/login"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/view48"
+        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+
+    <TextView
+        android:id="@+id/tv_userprofile_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
+        android:text="TextView"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+
+    <ImageView
+        android:id="@+id/iv_userprofile_pic"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginTop="55dp"
+        app:layout_constraintEnd_toStartOf="@+id/view70"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile" />
+
+    <RatingBar
+        android:id="@+id/ratingBar4"
+        android:layout_width="239dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/view70"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/textView77" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="20dp"
+        android:text="Rate text"
+        android:textColor="#000000"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar4" />
+
+    <TextView
+        android:id="@+id/textView66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
+        android:layout_marginTop="20dp"
+        android:text="Did you found this useful?"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/round_button"
+        android:text="Profile "
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toStartOf="@+id/view70"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/textView66"
+        app:srcCompat="@drawable/like" />
+
+    <TextView
+        android:id="@+id/textView67"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="61dp"
+        android:layout_marginLeft="61dp"
+        android:text="Likes "
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/textView68"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="145dp"
+        android:layout_marginLeft="145dp"
+        android:text="Dislike"
+        app:layout_constraintStart_toEndOf="@+id/textView67"
+        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="45dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="256dp"
+        android:layout_marginLeft="256dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/view61"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_delete_black_24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
