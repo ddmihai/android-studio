@@ -62,7 +62,8 @@ public class admin extends AppCompatActivity {
                                 dbref.child(path).child("type").setValue(2);
                                 Toast.makeText(admin.this,"User promoted to critic !",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getBaseContext(),dashboard.class));
-                                break;
+                                finish();
+
                             }
                         }
                         if (path==null)

@@ -19,6 +19,29 @@ public class info extends AppCompatActivity {
                             //    Update firebase on email update
                             //    ora fututa la booking
                             //    sortari in recycle views
+    //Create Users
+    //-Normal User
+    //-Promote at least two critics
+    //
+    //Create some bookings
+    //
+    //Create some review Street Food and Restaurant
+    //
+    //Create Restaurants and Street Food
+    //
+    //
+    //User-
+    //*	Normal sarrina@gmail.com	sarrina
+    //*	Normal raffa2020@gmail.com	rafael
+    //*	Normal chesar@gmail.com		chesar
+    //*	Normal steel@gmail.com		jamessteel	Promoted to Critic
+    //*	Normal serghey@gmail.com 	serghey		Promoted to Critic
+    //*	Normal	grey@gmail.com		greysimon
+    //*	Normal  singh@yahoo.com		singhk
+    //
+    //Bugs :
+    //when allready logged in agapie@gmail.com, from the dashboard i pressed back and i've got the dashboard from
+    //the new user (sarrina)
                             //    users rate reviews
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
