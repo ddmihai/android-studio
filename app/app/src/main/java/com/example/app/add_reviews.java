@@ -101,6 +101,7 @@ public class add_reviews extends AppCompatActivity {
                     dbref.child(path).child("ratingNr").setValue(e.getRatingNr()+1);
                     ref.child(ref.push().getKey()).setValue(review);
                     startActivity(new Intent(getBaseContext(), Details.class));
+                    finish();
 
                 }
             }

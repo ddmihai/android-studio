@@ -17,8 +17,8 @@ public class info extends AppCompatActivity {
                             //    Delete reviews
                             //    Eateries unicate
                             //    Update firebase on email update
-                            //    ora fututa la booking
-                            //    sortari in recycle views
+                            //rate reviews of critics
+
     //Create Users
     //-Normal User
     //-Promote at least two critics

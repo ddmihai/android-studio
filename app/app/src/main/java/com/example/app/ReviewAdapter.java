@@ -23,12 +23,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewholder> {
-    public ReviewAdapter(ArrayList<Review> list, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
+    public ReviewAdapter(ArrayList<Review> list,User logged, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
         this.list = list;
+        log=logged;
         listener=_listener;
 
     }
-
+    User log;
     ArrayList<Review> list;
     ReviewAdapter.Reviewholder.OnCardClickedListener listener;
     DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("_user_");
@@ -56,12 +57,11 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
                         Picasso.get().load(u.getUrl()).fit().into(hold.iv);
                         hold.rating.setRating(list.get(position).getRating());
                         //((logged) Context.getApplicationContext()).getMy_id();
-                        if(!u.getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail()))
-                            hold.delete.setVisibility(View.GONE);
+//                        if((!u.getEmail().equals(log.getEmail()))&& log.getType()!=3)
+//                            hold.delete.setVisibility(View.GONE);
                     }
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -76,7 +76,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
     }
     public static class Reviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
-        ImageView iv,delete;
+        ImageView iv;
         TextView tv,tv2;
         RatingBar rating;
 
@@ -85,7 +85,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
         public Reviewholder(@NonNull View itemView, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
             super(itemView);
             iv=itemView.findViewById(R.id.iv_card);
-            delete=itemView.findViewById(R.id.delete);
             tv=itemView.findViewById(R.id.tv_card);
             tv2=itemView.findViewById(R.id.tv_card2);
             rating=itemView.findViewById(R.id.ratingBar3);
