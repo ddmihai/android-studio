@@ -51,7 +51,7 @@ public class settings extends AppCompatActivity {
         });
 
 //              logout
-            logout.setOnClickListener(new View.OnClickListener() {
+        logout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     FirebaseAuth.getInstance().signOut();
