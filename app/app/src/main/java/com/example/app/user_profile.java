@@ -23,6 +23,8 @@ DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("_user_");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //        hide the actionbar
+        getSupportActionBar().hide();
         final Review r=getIntent().getParcelableExtra("Review");
         setContentView(R.layout.activity_user_profile);
         name=findViewById(R.id.tv_userprofile_name);

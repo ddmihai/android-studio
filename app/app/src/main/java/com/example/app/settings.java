@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -55,7 +56,10 @@ public class settings extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     FirebaseAuth.getInstance().signOut();
-                    Intent i = new Intent(getBaseContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    Toast.makeText(getBaseContext(), "Logout Successful!", Toast.LENGTH_SHORT).show();
                 }
             });
 

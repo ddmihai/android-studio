@@ -63,7 +63,7 @@ public class admin extends AppCompatActivity {
                                 Toast.makeText(admin.this,"User promoted to critic !",Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getBaseContext(),dashboard.class));
                                 finish();
-                                break;
+
                             }
                         }
                         if (path==null)
