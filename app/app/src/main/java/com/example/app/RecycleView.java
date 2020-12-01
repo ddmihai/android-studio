@@ -15,21 +15,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener {
+public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener, ReviewAdapter.Reviewholder.OnCardClickedListener {
     ImageView back,header;
     RecyclerView rv;
     ArrayList<Eatery> list=new ArrayList<>();
     ArrayList<Booking> listB=new ArrayList<>();
+    ArrayList<Review>listR=new ArrayList<>();
     DatabaseReference dbref;
     RecycleView_Adapter adapter;
     BookingAdapter adapterB;
+    ReviewAdapter adapterR;
     String type;
     String path;
+    Eatery e;
     int code;
 
     @Override
@@ -83,14 +87,9 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
                     for (DataSnapshot dss : snapshot.getChildren()) {
                         Booking b = dss.getValue(Booking.class);
                         if (b.getAddress().equals(((logged) getApplication()).getLogged().getEmail()))
-                        {
                             listB.add(b);
-
-
-                        }
-
                     }
-                    Collections.sort(list);
+                    //Collections.sort(listB); need to figure out date
                     adapterB = new BookingAdapter(listB);
                     rv.setAdapter(adapterB);
                 }
@@ -101,6 +100,30 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
                 }
             });
         }
+        else if(code==3) {
+            e=getIntent().getParcelableExtra("Eatery");
+            Picasso.get().load(e.getUrl()).fit().into(header);
+            dbref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dss : snapshot.getChildren()) {
+                        Review r = dss.getValue(Review.class);
+                        if (r.getEateryName().equals(e.getName()))
+                            listR.add(r);
+                    }
+                    //Collections.sort(list);
+                    adapterR = new ReviewAdapter(listR,RecycleView.this);
+                    rv.setAdapter(adapterR);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+
 //        back btn
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +140,12 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
             intent.putExtra("Eatery", list.get(i));
             startActivity(intent);
 
+        }
+        else if(code==3)
+        {
+            Intent intent = new Intent(RecycleView.this, user_profile.class);
+            intent.putExtra("Review", listR.get(i));
+            startActivity(intent);
         }
     }
 

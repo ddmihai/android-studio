@@ -1,6 +1,8 @@
 package com.example.app;
 
-public class Booking {
+import java.util.Date;
+
+public class Booking implements Comparable<Booking>{
     private int day;
     private int year;
     private int month;
@@ -65,6 +67,11 @@ public class Booking {
 
     public void setEatery(String eatery) {
         this.eatery = eatery;
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+       return 0;
     }
 }
 

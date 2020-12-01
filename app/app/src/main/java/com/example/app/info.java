@@ -14,6 +14,12 @@ public class info extends AppCompatActivity {
     ImageView back;
     Button logout;
     @Override
+                            //    Delete reviews
+                            //    Eateries unicate
+                            //    Update firebase on email update
+                            //    ora fututa la booking
+                            //    sortari in recycle views
+                            //    users rate reviews
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
