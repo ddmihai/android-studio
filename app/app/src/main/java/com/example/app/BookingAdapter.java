@@ -36,7 +36,7 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.Bookingh
             String Hour=(int)list.get(position).getHour()+":";
             if((int)list.get(position).getHour()==list.get(position).getHour())
                 Hour+="00";
-            else Hour+=(list.get(position).getHour()-(int)list.get(position).getHour());
+            else Hour+=(int)((list.get(position).getHour()-(int)list.get(position).getHour()))*100;
 
             hold.tv2.setText("You have a booking for "+list.get(position).getEatery()+
                             " on "+list.get(position).getDay()+"/"+list.get(position).getMonth()+

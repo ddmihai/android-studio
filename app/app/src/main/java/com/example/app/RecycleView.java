@@ -112,7 +112,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
                             listR.add(r);
                     }
                     //Collections.sort(list);
-                    adapterR = new ReviewAdapter(listR,RecycleView.this);
+                    adapterR = new ReviewAdapter(listR,((logged)getApplication()).getLogged(),RecycleView.this);
                     rv.setAdapter(adapterR);
                 }
 
