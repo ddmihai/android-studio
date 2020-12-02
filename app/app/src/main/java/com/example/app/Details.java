@@ -57,8 +57,9 @@ public class Details extends AppCompatActivity {
                 startActivity(new Intent(getBaseContext(), RecycleView.class));
             }
         });
-        if(((logged) getApplication()).getLogged().getType()==1 ||((logged) getApplication()).getLogged().getType()==3)
-            add.setVisibility(View.GONE);
+        if(e.getType().equals("Restaurant"))
+            if(((logged) getApplication()).getLogged().getType()==1 ||((logged) getApplication()).getLogged().getType()==3)
+                 add.setVisibility(View.GONE);
 
 //        add reservation intent
         reservation.setOnClickListener(new View.OnClickListener() {

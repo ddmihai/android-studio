@@ -12,7 +12,8 @@ public class User implements Parcelable {
     private String login;
     private int type;
     private String url;
-
+    private String uid;
+    private String []Liked;
     public User() {
 //        name=null;
 //        lname=null;
@@ -20,6 +21,9 @@ public class User implements Parcelable {
 //        password=null;
 //        login=null;
     }
+
+
+
     public User(String fName, String lName, String email, String password, String login, String url, int type){
         this.fName=fName;
         this.lName=lName;
@@ -30,21 +34,34 @@ public class User implements Parcelable {
         this.type=type;
     }
 
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
     protected User(Parcel in) {
         fName = in.readString();
         lName = in.readString();
         email = in.readString();
         password = in.readString();
         login = in.readString();
+        type = in.readInt();
         url = in.readString();
+        uid = in.readString();
+        Liked = in.createStringArray();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fName);
+        dest.writeString(lName);
+        dest.writeString(email);
+        dest.writeString(password);
+        dest.writeString(login);
+        dest.writeInt(type);
+        dest.writeString(url);
+        dest.writeString(uid);
+        dest.writeStringArray(Liked);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -58,6 +75,29 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+    public String[] getLiked() {
+        return Liked;
+    }
+
+    public void setLiked(String[] liked) {
+        Liked = liked;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public String getfName() {
         return fName;
@@ -107,20 +147,6 @@ public class User implements Parcelable {
         this.url = url;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(fName);
-        dest.writeString(lName);
-        dest.writeString(email);
-        dest.writeString(password);
-        dest.writeString(login);
-        dest.writeString(url);
-    }
     public boolean equals(User u) {
         if(!this.fName.equals(u.fName))
             return false;

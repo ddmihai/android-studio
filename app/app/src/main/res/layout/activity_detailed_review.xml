@@ -7,14 +7,14 @@
     tools:context=".user_profile">
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/iv_dislike"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="136dp"
         android:layout_marginLeft="136dp"
         android:layout_marginTop="10dp"
         android:rotation="180"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/iv_like"
         app:layout_constraintTop_toBottomOf="@+id/textView66"
         app:srcCompat="@drawable/like" />
 
@@ -92,13 +92,16 @@
         android:id="@+id/textView38"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginLeft="14dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="52dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
         android:text="Profile "
         android:textColor="#FF6D00"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/iv_detailedreview_pic"
         app:layout_constraintStart_toEndOf="@+id/view48"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -112,10 +115,10 @@
         android:text="@string/login"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/view48"
-        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detailedreview_pic" />
 
     <TextView
-        android:id="@+id/tv_userprofile_login"
+        android:id="@+id/tv_detailedreview_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -125,12 +128,14 @@
         android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detailedreview_pic" />
 
     <ImageView
-        android:id="@+id/iv_userprofile_pic"
+        android:id="@+id/iv_detailedreview_pic"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="55dp"
         app:layout_constraintEnd_toStartOf="@+id/view70"
         app:layout_constraintHorizontal_bias="0.5"
@@ -139,7 +144,7 @@
         app:srcCompat="@drawable/profile" />
 
     <RatingBar
-        android:id="@+id/ratingBar4"
+        android:id="@+id/detailed_reviewRB"
         android:layout_width="239dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
@@ -148,7 +153,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView77" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/review_desc"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
@@ -157,7 +162,7 @@
         android:text="Rate text"
         android:textColor="#000000"
         app:layout_constraintStart_toEndOf="@+id/view61"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar4" />
+        app:layout_constraintTop_toBottomOf="@+id/detailed_reviewRB" />
 
     <TextView
         android:id="@+id/textView66"
@@ -168,10 +173,10 @@
         android:layout_marginTop="20dp"
         android:text="Did you found this useful?"
         app:layout_constraintStart_toEndOf="@+id/view61"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/review_desc" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_profile"
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_marginTop="7dp"
@@ -182,10 +187,10 @@
         app:layout_constraintEnd_toStartOf="@+id/view70"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/view61"
-        app:layout_constraintTop_toBottomOf="@+id/iv_userprofile_pic" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_detailedreview_pic" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/iv_like"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="52dp"
@@ -196,27 +201,27 @@
         app:srcCompat="@drawable/like" />
 
     <TextView
-        android:id="@+id/textView67"
+        android:id="@+id/tv_review_likes2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="61dp"
-        android:layout_marginLeft="61dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginLeft="60dp"
         android:text="Likes "
         app:layout_constraintStart_toEndOf="@+id/view61"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_like" />
 
     <TextView
-        android:id="@+id/textView68"
+        android:id="@+id/tv_dislikes2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="145dp"
-        android:layout_marginLeft="145dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
         android:text="Dislike"
-        app:layout_constraintStart_toEndOf="@+id/textView67"
-        app:layout_constraintTop_toBottomOf="@+id/imageView14" />
+        app:layout_constraintStart_toEndOf="@+id/tv_review_likes2"
+        app:layout_constraintTop_toBottomOf="@+id/iv_dislike" />
 
     <ImageView
-        android:id="@+id/imageView17"
+        android:id="@+id/iv_delete"
         android:layout_width="45dp"
         android:layout_height="43dp"
         android:layout_marginStart="256dp"
@@ -224,6 +229,6 @@
         android:layout_marginTop="5dp"
         app:layout_constraintStart_toEndOf="@+id/view61"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_delete_black_24dp" />
+        app:srcCompat="@drawable/delete" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

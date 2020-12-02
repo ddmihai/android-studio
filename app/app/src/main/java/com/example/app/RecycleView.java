@@ -86,7 +86,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dss : snapshot.getChildren()) {
                         Booking b = dss.getValue(Booking.class);
-                        if (b.getAddress().equals(((logged) getApplication()).getLogged().getEmail()))
+                        if (b.getAddress().equals(((logged) getApplication()).getLogged().getUid()))
                             listB.add(b);
                     }
                     //Collections.sort(listB); need to figure out date
@@ -143,7 +143,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         }
         else if(code==3)
         {
-            Intent intent = new Intent(RecycleView.this, user_profile.class);
+            Intent intent = new Intent(RecycleView.this, detailed_review.class);
             intent.putExtra("Review", listR.get(i));
             startActivity(intent);
         }

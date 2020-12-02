@@ -50,7 +50,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     User u = dss.getValue(User.class);
-                    if (u.getEmail().equals(list.get(position).getReviewerMail()))
+                    if (u.getUid().equals(list.get(position).getReviewerID()))
                     {
                         hold.tv.setText(u.getLogin());
                         hold.tv2.setText(list.get(position).getReview());

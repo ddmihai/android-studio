@@ -37,7 +37,7 @@ DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("_user_");
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     User u = dss.getValue(User.class);
-                    if (u.getEmail().equals(r.getReviewerMail()))
+                    if (u.getUid().equals(r.getReviewerID()))
                     {
                         name.setText(u.getfName()+" "+u.getlName());
                         login.setText(u.getLogin());

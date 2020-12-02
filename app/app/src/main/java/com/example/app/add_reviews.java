@@ -14,6 +14,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -80,9 +81,9 @@ public class add_reviews extends AppCompatActivity {
         final DatabaseReference ref=FirebaseDatabase.getInstance().getReference("_reviews_");
         Picasso.get().load(u.getUrl()).fit().into(userPic);
 
-        Date reviewTime= Calendar.getInstance().getTime();
-        reviewTime.getTime();
-        Toast.makeText(add_reviews.this,reviewTime.toString(),Toast.LENGTH_LONG).show();
+//        Date reviewTime= Calendar.getInstance().getTime();
+//        reviewTime.getTime();
+//        Toast.makeText(add_reviews.this,reviewTime.toString(),Toast.LENGTH_LONG).show();
         //rating bar
         addR.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,13 +95,15 @@ public class add_reviews extends AppCompatActivity {
                     Toast.makeText(add_reviews.this,"Please select a rating !",Toast.LENGTH_SHORT).show();
                 else
                 {
-                    Date reviewTime= Calendar.getInstance().getTime();
-                    reviewTime.getTime();
-                    Review review=new Review(reviewTime,reviewText,u.getEmail(),e.getName(),ratingVal);
+//                    Date reviewTime= Calendar.getInstance().getTime();
+//                    reviewTime.getTime();
+                    String npath=ref.push().getKey();
+                    Review review=new Review(reviewText, FirebaseAuth.getInstance().getCurrentUser().getUid(),e.getName(),ratingVal,0,0,npath);
                     dbref.child(path).child("rating").setValue(e.getRating()+ratingVal);
                     dbref.child(path).child("ratingNr").setValue(e.getRatingNr()+1);
-                    ref.child(ref.push().getKey()).setValue(review);
-                    startActivity(new Intent(getBaseContext(), Details.class));
+                    ref.child(npath).setValue(review);
+                    Toast.makeText(add_reviews.this,"Review Added!",Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getBaseContext(), dashboard.class));
                     finish();
 
                 }

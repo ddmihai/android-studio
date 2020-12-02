@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -42,7 +43,7 @@ public class reservation extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-               booking= new Booking(year, month, dayOfMonth, 0, e.getName(),((logged) getApplication()).getLogged().getEmail());
+               booking= new Booking(year, month, dayOfMonth, 0, e.getName(), FirebaseAuth.getInstance().getCurrentUser().getUid());
                 Toast.makeText(reservation.this, "Date Selected !", Toast.LENGTH_SHORT).show();// TODO Auto-generated method stub
 
             }

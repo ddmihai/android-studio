@@ -36,10 +36,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingAdapter.Bookingh
             String Hour=(int)list.get(position).getHour()+":";
             if((int)list.get(position).getHour()==list.get(position).getHour())
                 Hour+="00";
-            else Hour+=(int)((list.get(position).getHour()-(int)list.get(position).getHour()))*100;
+            else {
+                Hour += Math.round((((list.get(position).getHour() - (int) list.get(position).getHour())) * 100));
+            }
 
-            hold.tv2.setText("You have a booking for "+list.get(position).getEatery()+
-                            " on "+list.get(position).getDay()+"/"+list.get(position).getMonth()+
+            hold.tv2.setText(list.get(position).getEatery()+
+                            ":"+list.get(position).getDay()+"/"+list.get(position).getMonth()+
                             "/"+list.get(position).getYear()+" set at "+Hour+" hours");
             hold.iv.setImageResource(R.drawable.menu);
             //Picasso.get().load((list.get(position)).getUrl()).fit().into(hold.iv);

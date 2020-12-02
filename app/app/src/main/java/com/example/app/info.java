@@ -15,8 +15,6 @@ public class info extends AppCompatActivity {
     Button logout;
     @Override
                             //    Delete reviews
-                            //    Eateries unicate
-                            //    Update firebase on email update
                             //rate reviews of critics
 
     //Create Users
