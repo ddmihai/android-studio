@@ -1,4 +1,5 @@
 package com.example.app;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -14,16 +15,54 @@ public class Review implements Parcelable {
     int dislikes;
     String path;
 
-    public Review( String review, String reviewerID, String eateryName, float rating, int likes, int dislikes, String path) {
+    public Review(String review, String reviewerID, String eateryName, float rating, int likes, int dislikes, String path) {
         this.review = review;
         this.reviewerID = reviewerID;
         this.eateryName = eateryName;
         this.rating = rating;
         this.likes = likes;
         this.dislikes = dislikes;
-        this.path=path;
+        this.path = path;
 
     }
+
+    protected Review(Parcel in) {
+        review = in.readString();
+        reviewerID = in.readString();
+        eateryName = in.readString();
+        rating = in.readFloat();
+        likes = in.readInt();
+        dislikes = in.readInt();
+        path = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(review);
+        dest.writeString(reviewerID);
+        dest.writeString(eateryName);
+        dest.writeFloat(rating);
+        dest.writeInt(likes);
+        dest.writeInt(dislikes);
+        dest.writeString(path);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Review> CREATOR = new Creator<Review>() {
+        @Override
+        public Review createFromParcel(Parcel in) {
+            return new Review(in);
+        }
+
+        @Override
+        public Review[] newArray(int size) {
+            return new Review[size];
+        }
+    };
 
     public String getReviewerID() {
         return reviewerID;
@@ -57,27 +96,8 @@ public class Review implements Parcelable {
         this.dislikes = dislikes;
     }
 
-    public Review()
-    {}
-
-    protected Review(Parcel in) {
-        review = in.readString();
-        reviewerID = in.readString();
-        eateryName = in.readString();
-        rating = in.readFloat();
+    public Review() {
     }
-
-    public static final Creator<Review> CREATOR = new Creator<Review>() {
-        @Override
-        public Review createFromParcel(Parcel in) {
-            return new Review(in);
-        }
-
-        @Override
-        public Review[] newArray(int size) {
-            return new Review[size];
-        }
-    };
 
 
     public String getReview() {
@@ -105,16 +125,4 @@ public class Review implements Parcelable {
         this.rating = rating;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(review);
-        dest.writeString(reviewerID);
-        dest.writeString(eateryName);
-        dest.writeFloat(rating);
-    }
 }

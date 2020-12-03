@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     for (DataSnapshot dss : snapshot.getChildren()) {
                         User u = dss.getValue(User.class);
                         if (u.getEmail().equals(user.getEmail())) {
-                            if(u.getUid()==null)
-                                    ref.child(dss.getKey()).child("uid").setValue(user.getUid());
+                            if (u.getUid() == null)
+                                ref.child(dss.getKey()).child("uid").setValue(user.getUid());
                             Intent i = new Intent(getBaseContext(), dashboard.class);
                             ((logged) getApplication()).setLogged(u);//calling the class that extends the app to hold the type of user
                             //consideration for adding put extra everywhere

@@ -17,47 +17,43 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class user_profile extends AppCompatActivity {
-TextView name,login,email,level;
-ImageView profilePic;
-DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("_user_");
+    TextView name, login, email, level;
+    ImageView profilePic;
+    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("_user_");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //        hide the actionbar
         getSupportActionBar().hide();
-        final Review r=getIntent().getParcelableExtra("Review");
+        final User u = getIntent().getParcelableExtra("User");
         setContentView(R.layout.activity_user_profile);
-        name=findViewById(R.id.tv_userprofile_name);
-        login=findViewById(R.id.tv_userprofile_login);
-        email=findViewById(R.id.tv_userprofile_email);
-        level=findViewById(R.id.tv_userprofile_level);
-        profilePic=findViewById(R.id.iv_userprofile_pic);
-        dbref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dss : snapshot.getChildren()) {
-                    User u = dss.getValue(User.class);
-                    if (u.getUid().equals(r.getReviewerID()))
-                    {
-                        name.setText(u.getfName()+" "+u.getlName());
-                        login.setText(u.getLogin());
-                        email.setText(u.getEmail());
-                        switch (u.getType()){
-                            case 1: {level.setText("Standard User");break;}
-                            case 2: {level.setText("Food Critic");break;}
-                            case 3: {level.setText("Administrator");break;}
-                        }
-                        Picasso.get().load(u.getUrl()).into(profilePic) ;
-                        break;
-
-                    }
-                }
+        name = findViewById(R.id.tv_userprofile_name);
+        login = findViewById(R.id.tv_userprofile_login);
+        email = findViewById(R.id.tv_userprofile_email);
+        level = findViewById(R.id.tv_userprofile_level);
+        profilePic = findViewById(R.id.iv_userprofile_pic);
+        name.setText(u.getfName() + " " + u.getlName());
+        login.setText(u.getLogin());
+        email.setText(u.getEmail());
+        switch (u.getType()) {
+            case 1: {
+                level.setText("Standard User");
+                break;
             }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            case 2: {
+                level.setText("Food Critic");
+                break;
             }
-        });
+            case 3: {
+                level.setText("Administrator");
+                break;
+            }
+        }
+        Picasso.get().load(u.getUrl()).into(profilePic);
+
     }
 }
+
+
+

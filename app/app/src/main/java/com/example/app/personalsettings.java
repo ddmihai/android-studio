@@ -40,17 +40,18 @@ public class personalsettings extends AppCompatActivity {
     public static final String URL = "URL";
     Uri url;
     String path;
-    ImageView back, avatar;
+    ImageView avatar;
     EditText fname, lname, login, email, password;
     Button confirm, edit1, edit2, edit3, edit4, edit5;
-    int ok=0;
-    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("_user_");;
+    int ok = 0;
+    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference().child("_user_");
+    ;
     StorageReference sref = FirebaseStorage.getInstance().getReference("usersProfile");
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //verify the image pick
-        if (requestCode == SELECT_PICTURE && resultCode==RESULT_OK && data!=null) {
+        if (requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data != null) {
             url = data.getData();
             Picasso.get().load(url).into(avatar);
         }
@@ -92,7 +93,6 @@ public class personalsettings extends AppCompatActivity {
         getSupportActionBar().hide();
 
 
-        back = findViewById(R.id.back);
         fname = findViewById(R.id.et_fn);
         lname = findViewById(R.id.et_ln);
         login = findViewById(R.id.et_login);
@@ -142,28 +142,11 @@ public class personalsettings extends AppCompatActivity {
         });
         avatar = findViewById(R.id.iv_avatar);
         //       go back
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), settings.class));
-            }
-        });
 
-
-//        //db reference
-
-
-//        go back
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(),settings.class ));
-            }
-        });
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ok=1;
+                ok = 1;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -175,10 +158,9 @@ public class personalsettings extends AppCompatActivity {
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot ds:snapshot.getChildren())
-                {
-                    User u=ds.getValue(User.class);
-                    if(u.equals(((logged)getApplication()).getLogged())) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    User u = ds.getValue(User.class);
+                    if (u.equals(((logged) getApplication()).getLogged())) {
                         path = ds.getKey();
                         break;
                     }
@@ -238,7 +220,7 @@ public class personalsettings extends AppCompatActivity {
                     reauth(mail, ((logged) getApplication()).getLogged().getPassword());
                 else if (password.getVisibility() == View.VISIBLE)
                     reauth(((logged) getApplication()).getLogged().getEmail(), pwd);
-                if(ok==1) {
+                if (ok == 1) {
                     final StorageReference reference = sref.child(((logged) getApplication()).getLogged().getEmail() + "." + getExt(url));
                     reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override

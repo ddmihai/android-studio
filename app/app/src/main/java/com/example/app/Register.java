@@ -42,7 +42,7 @@ public class Register extends AppCompatActivity {
     ImageView chooseprofilepic;
     private FirebaseAuth mAuth;
     DatabaseReference dbref;
-    StorageReference sref= FirebaseStorage.getInstance().getReference("usersProfile");
+    StorageReference sref = FirebaseStorage.getInstance().getReference("usersProfile");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,39 +55,54 @@ public class Register extends AppCompatActivity {
         chooseprofilepic = findViewById(R.id.chooseprofilepic);
 
 
-        fname =findViewById(R.id.fname);
-        lname =findViewById(R.id.lname);
+        fname = findViewById(R.id.fname);
+        lname = findViewById(R.id.lname);
         login = findViewById(R.id.login);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
-        mAuth= FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         //db reference
         dbref = FirebaseDatabase.getInstance().getReference("_user_");
 
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                final String fn=fname.getText().toString().trim();
-                final String ln=lname.getText().toString().trim();
-                final String log=login.getText().toString().trim();
-                final String mail=email.getText().toString().trim();
-                final String pwd=password.getText().toString().trim();
-                if(TextUtils.isEmpty(fn))  {fname.setError("First Name is required"); return;}
-                if(TextUtils.isEmpty(ln))  {lname.setError("Last Name is required");return;}
-                if(TextUtils.isEmpty(log)) {login.setError("Username is required");return;}
-                if(TextUtils.isEmpty(mail)){email.setError("Email is required");return;}
-                if(TextUtils.isEmpty(pwd)) {password.setError("Password is required");return;}
-                if(pwd.length()<6){password.setError("Password needs to be 6 characters or more");return;}
-                mAuth.createUserWithEmailAndPassword(mail,pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            public void onClick(View v) {
+                final String fn = fname.getText().toString().trim();
+                final String ln = lname.getText().toString().trim();
+                final String log = login.getText().toString().trim();
+                final String mail = email.getText().toString().trim();
+                final String pwd = password.getText().toString().trim();
+                if (TextUtils.isEmpty(fn)) {
+                    fname.setError("First Name is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(ln)) {
+                    lname.setError("Last Name is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(log)) {
+                    login.setError("Username is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(mail)) {
+                    email.setError("Email is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(pwd)) {
+                    password.setError("Password is required");
+                    return;
+                }
+                if (pwd.length() < 6) {
+                    password.setError("Password needs to be 6 characters or more");
+                    return;
+                }
+                mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(Register.this,"User Created",Toast.LENGTH_SHORT).show();
-                            final StorageReference reference = sref.child(fn+"."+getExt(url));
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                            final StorageReference reference = sref.child(fn + "." + getExt(url));
                             reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -95,9 +110,11 @@ public class Register extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(Uri uri) {
                                             String downloadURL = uri.toString();
-                                            User user = new User(fn, ln,mail,pwd, log, downloadURL,1);
-                                            dbref.child(dbref.push().getKey()).setValue(user);
-                                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                            User user = new User(fn, ln, mail, pwd, log, downloadURL, 1);
+                                            String key=dbref.push().getKey();
+
+                                            dbref.child(key).setValue(user);
+                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
                                         }
                                     });
@@ -110,22 +127,18 @@ public class Register extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Register.this,"Picture not selected !",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Register.this, "Picture not selected !", Toast.LENGTH_SHORT).show();
                                 }
                             });
 
 
-
-
-                        }
-                        else Toast.makeText(Register.this,"Error !",Toast.LENGTH_SHORT).show();
+                        } else Toast.makeText(Register.this, "Error !", Toast.LENGTH_SHORT).show();
 
                     }
                 });
             }
 
         });
-
 
 
         chooseprofilepic.setOnClickListener(new View.OnClickListener() {
@@ -166,15 +179,14 @@ public class Register extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //verify the image pick
-        if(requestCode == SELECT_PICTURE )
-        {
+        if (requestCode == SELECT_PICTURE) {
             url = data.getData();
-            Picasso.get().load(url).into(chooseprofilepic) ;
+            Picasso.get().load(url).into(chooseprofilepic);
         }
     }
 
-    private String getExt(Uri uri){
-        ContentResolver resolver= getContentResolver();
+    private String getExt(Uri uri) {
+        ContentResolver resolver = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(resolver.getType(uri));
     }

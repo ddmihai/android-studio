@@ -17,8 +17,9 @@ import com.squareup.picasso.Picasso;
 
 public class dashboard extends AppCompatActivity {
     Button settings, e_restaurant, e_streetfood, logout, addRestaurant, addStreetfood;
-    TextView fullname,type;
+    TextView fullname, type;
     ImageView avatar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,36 +27,51 @@ public class dashboard extends AppCompatActivity {
         //        hide the actionbar
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("_user_");
         getSupportActionBar().hide();
-        User User=((logged) getApplication()).getLogged();//getting the user type value through the class that extends app
+        final User User = ((logged) getApplication()).getLogged();//getting the user type value through the class that extends app
         settings = findViewById(R.id.settings);
         e_restaurant = findViewById(R.id.e_restaurant);
         e_streetfood = findViewById(R.id.e_streetfood);
         logout = findViewById(R.id.logout);
         addRestaurant = findViewById(R.id.addRestaurant);
         addStreetfood = findViewById(R.id.addStreetfood);
-        fullname=findViewById(R.id.tv_fullname);
-        type=findViewById(R.id.tv_type);
-        avatar=findViewById(R.id.avatar);
-        fullname.setText(User.getfName()+" "+User.getlName());
-        switch (User.getType()){
-            case 1: {type.setText("Standard User");break;}
-            case 2: {type.setText("Food Critic");break;}
-            case 3: {type.setText("Administrator");break;}
+        fullname = findViewById(R.id.tv_fullname);
+        type = findViewById(R.id.tv_type);
+        avatar = findViewById(R.id.avatar);
+        fullname.setText(User.getfName() + " " + User.getlName());
+        switch (User.getType()) {
+            case 1: {
+                type.setText("Standard User");
+                break;
+            }
+            case 2: {
+                type.setText("Food Critic");
+                break;
+            }
+            case 3: {
+                type.setText("Administrator");
+                break;
+            }
         }
         Picasso.get().load(User.getUrl()).fit().into(avatar);
-        if(User.getType()==1|| User.getType()==2)
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), user_profile.class);
+                i.putExtra("User", User);
+                startActivity(i);
+            }
+        });
+        if (User.getType() == 1 || User.getType() == 2)
             addRestaurant.setVisibility(View.INVISIBLE);
 
         //        go to settings page
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(((logged) getApplication()).getLogged().getType()==1||((logged) getApplication()).getLogged().getType()==2) {
+                if (((logged) getApplication()).getLogged().getType() == 1 || ((logged) getApplication()).getLogged().getType() == 2) {
                     Intent i = new Intent(getBaseContext(), settings.class);
                     startActivity(i);
-                }
-                else if(((logged) getApplication()).getLogged().getType()==3)
-                {
+                } else if (((logged) getApplication()).getLogged().getType() == 3) {
                     Intent i = new Intent(getBaseContext(), personalSettingsAdmin.class);
                     startActivity(i);
                 }
@@ -68,11 +84,11 @@ public class dashboard extends AppCompatActivity {
         e_restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getBaseContext(),RecycleView.class);
-                i.putExtra("Path","Eatery");
-                i.putExtra("Code",1);
-                i.putExtra("Type","Restaurant");
-                i.putExtra("Header",1);
+                Intent i = new Intent(getBaseContext(), RecycleView.class);
+                i.putExtra("Path", "Eatery");
+                i.putExtra("Code", 1);
+                i.putExtra("Type", "Restaurant");
+                i.putExtra("Header", 1);
                 startActivity(i);
 
             }
@@ -82,11 +98,11 @@ public class dashboard extends AppCompatActivity {
         e_streetfood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getBaseContext(),RecycleView.class);
-                i.putExtra("Path","Eatery");
-                i.putExtra("Code",1);
-                i.putExtra("Type","Street Food");
-                i.putExtra("Header",2);
+                Intent i = new Intent(getBaseContext(), RecycleView.class);
+                i.putExtra("Path", "Eatery");
+                i.putExtra("Code", 1);
+                i.putExtra("Type", "Street Food");
+                i.putExtra("Header", 2);
                 startActivity(i);
             }
         });
@@ -107,8 +123,8 @@ public class dashboard extends AppCompatActivity {
         addRestaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getBaseContext(),add_eatery.class);
-                i.putExtra("Type","Restaurant");
+                Intent i = new Intent(getBaseContext(), add_eatery.class);
+                i.putExtra("Type", "Restaurant");
                 startActivity(i);
             }
         });
@@ -118,8 +134,8 @@ public class dashboard extends AppCompatActivity {
         addStreetfood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i =new Intent(getBaseContext(),add_eatery.class);
-                i.putExtra("Type","Street Food");
+                Intent i = new Intent(getBaseContext(), add_eatery.class);
+                i.putExtra("Type", "Street Food");
                 startActivity(i);
             }
         });

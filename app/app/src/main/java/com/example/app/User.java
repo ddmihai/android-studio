@@ -13,7 +13,7 @@ public class User implements Parcelable {
     private int type;
     private String url;
     private String uid;
-    private String []Liked;
+
     public User() {
 //        name=null;
 //        lname=null;
@@ -23,15 +23,14 @@ public class User implements Parcelable {
     }
 
 
-
-    public User(String fName, String lName, String email, String password, String login, String url, int type){
-        this.fName=fName;
-        this.lName=lName;
-        this.email=email;
-        this.password=password;
-        this.login=login;
-        this.url=url;
-        this.type=type;
+    public User(String fName, String lName, String email, String password, String login, String url, int type) {
+        this.fName = fName;
+        this.lName = lName;
+        this.email = email;
+        this.password = password;
+        this.login = login;
+        this.url = url;
+        this.type = type;
     }
 
     protected User(Parcel in) {
@@ -43,7 +42,6 @@ public class User implements Parcelable {
         type = in.readInt();
         url = in.readString();
         uid = in.readString();
-        Liked = in.createStringArray();
     }
 
     @Override
@@ -56,7 +54,6 @@ public class User implements Parcelable {
         dest.writeInt(type);
         dest.writeString(url);
         dest.writeString(uid);
-        dest.writeStringArray(Liked);
     }
 
     @Override
@@ -82,13 +79,6 @@ public class User implements Parcelable {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-    public String[] getLiked() {
-        return Liked;
-    }
-
-    public void setLiked(String[] liked) {
-        Liked = liked;
     }
 
     public int getType() {
@@ -148,19 +138,19 @@ public class User implements Parcelable {
     }
 
     public boolean equals(User u) {
-        if(!this.fName.equals(u.fName))
+        if (!this.fName.equals(u.fName))
             return false;
-        if(!this.lName.equals(u.lName))
+        if (!this.lName.equals(u.lName))
             return false;
-        if(!this.login.equals(u.login))
+        if (!this.login.equals(u.login))
             return false;
-        if(!this.email.equals(u.email))
+        if (!this.email.equals(u.email))
             return false;
-        if(!this.password.equals(u.password))
+        if (!this.password.equals(u.password))
             return false;
-        if(this.type!=(u.type))
+        if (this.type != (u.type))
             return false;
-        if(!this.url.equals(u.url))
+        if (!this.url.equals(u.url))
             return false;
         return true;
     }

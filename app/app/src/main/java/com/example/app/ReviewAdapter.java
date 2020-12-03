@@ -23,22 +23,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewholder> {
-    public ReviewAdapter(ArrayList<Review> list,User logged, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
+    public ReviewAdapter(ArrayList<Review> list, User logged, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
         this.list = list;
-        log=logged;
-        listener=_listener;
+        log = logged;
+        listener = _listener;
 
     }
+
     User log;
     ArrayList<Review> list;
     ReviewAdapter.Reviewholder.OnCardClickedListener listener;
-    DatabaseReference dbref= FirebaseDatabase.getInstance().getReference("_user_");
+    DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("_user_");
 
     @NonNull
     @Override
     public ReviewAdapter.Reviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.read_review_card,parent,false);
-        ReviewAdapter.Reviewholder h=new ReviewAdapter.Reviewholder(v,listener);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.read_review_card, parent, false);
+        ReviewAdapter.Reviewholder h = new ReviewAdapter.Reviewholder(v, listener);
         return h;
     }
 
@@ -50,8 +51,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     User u = dss.getValue(User.class);
-                    if (u.getUid().equals(list.get(position).getReviewerID()))
-                    {
+                    if (u.getUid().equals(list.get(position).getReviewerID())) {
                         hold.tv.setText(u.getLogin());
                         hold.tv2.setText(list.get(position).getReview());
                         Picasso.get().load(u.getUrl()).fit().into(hold.iv);
@@ -62,6 +62,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
                     }
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
@@ -74,21 +75,21 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
     public int getItemCount() {
         return list.size();
     }
-    public static class Reviewholder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+
+    public static class Reviewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView iv;
-        TextView tv,tv2;
+        TextView tv, tv2;
         RatingBar rating;
 
         ReviewAdapter.Reviewholder.OnCardClickedListener listener;
 
         public Reviewholder(@NonNull View itemView, ReviewAdapter.Reviewholder.OnCardClickedListener _listener) {
             super(itemView);
-            iv=itemView.findViewById(R.id.iv_card);
-            tv=itemView.findViewById(R.id.tv_card);
-            tv2=itemView.findViewById(R.id.tv_card2);
-            rating=itemView.findViewById(R.id.ratingBar3);
-            listener=_listener;
+            iv = itemView.findViewById(R.id.iv_card);
+            tv = itemView.findViewById(R.id.tv_card);
+            tv2 = itemView.findViewById(R.id.tv_card2);
+            rating = itemView.findViewById(R.id.ratingBar3);
+            listener = _listener;
             itemView.setOnClickListener(this);
 
         }
@@ -97,8 +98,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.Reviewhold
         public void onClick(View v) {
             listener.OnCardClickedListener(getAdapterPosition());
         }
-        public interface OnCardClickedListener
-        {
+
+        public interface OnCardClickedListener {
             public void OnCardClickedListener(int i);
         }
 

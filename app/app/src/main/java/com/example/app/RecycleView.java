@@ -22,11 +22,11 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class RecycleView extends AppCompatActivity implements RecycleView_Adapter.holder.OnCardClickedListener, ReviewAdapter.Reviewholder.OnCardClickedListener {
-    ImageView back,header;
+    ImageView header;
     RecyclerView rv;
-    ArrayList<Eatery> list=new ArrayList<>();
-    ArrayList<Booking> listB=new ArrayList<>();
-    ArrayList<Review>listR=new ArrayList<>();
+    ArrayList<Eatery> list = new ArrayList<>();
+    ArrayList<Booking> listB = new ArrayList<>();
+    ArrayList<Review> listR = new ArrayList<>();
     DatabaseReference dbref;
     RecycleView_Adapter adapter;
     BookingAdapter adapterB;
@@ -42,22 +42,21 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
         setContentView(R.layout.activity_recycle_view);
         //        hide the actionbar
         getSupportActionBar().hide();
-        back = findViewById(R.id.back);
-        header=findViewById(R.id.imageView15);
+        header = findViewById(R.id.imageView15);
 
-        rv=findViewById(R.id.rv_l);
+        rv = findViewById(R.id.rv_l);
 
         rv.setLayoutManager(new LinearLayoutManager(RecycleView.this));//LinearLayoutManager.HORIZONTAL,false));
-        path=getIntent().getStringExtra("Path");
-        code=getIntent().getIntExtra("Code",0);
-        int head=getIntent().getIntExtra("Header",0);
-        if(head==1)
+        path = getIntent().getStringExtra("Path");
+        code = getIntent().getIntExtra("Code", 0);
+        int head = getIntent().getIntExtra("Header", 0);
+        if (head == 1)
             header.setImageResource(R.drawable.restaurants);
-        else if(head==2)
+        else if (head == 2)
             header.setImageResource(R.drawable.streetfoodheader);
-        dbref= FirebaseDatabase.getInstance().getReference(path);
-        if(code==1) {
-            type=getIntent().getStringExtra("Type");
+        dbref = FirebaseDatabase.getInstance().getReference(path);
+        if (code == 1) {
+            type = getIntent().getStringExtra("Type");
             dbref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -77,9 +76,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
 
                 }
             });
-        }
-        else if(code==2)
-        {
+        } else if (code == 2) {
             header.setImageResource(R.drawable.bookingheader);
             dbref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -99,9 +96,8 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
 
                 }
             });
-        }
-        else if(code==3) {
-            e=getIntent().getParcelableExtra("Eatery");
+        } else if (code == 3) {
+            e = getIntent().getParcelableExtra("Eatery");
             Picasso.get().load(e.getUrl()).fit().into(header);
             dbref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -112,7 +108,7 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
                             listR.add(r);
                     }
                     //Collections.sort(list);
-                    adapterR = new ReviewAdapter(listR,((logged)getApplication()).getLogged(),RecycleView.this);
+                    adapterR = new ReviewAdapter(listR, ((logged) getApplication()).getLogged(), RecycleView.this);
                     rv.setAdapter(adapterR);
                 }
 
@@ -124,25 +120,16 @@ public class RecycleView extends AppCompatActivity implements RecycleView_Adapte
 
         }
 
-//        back btn
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), dashboard.class));
-            }
-        });
     }
 
     @Override
     public void OnCardClickedListener(int i) {
-        if(code==1) {
+        if (code == 1) {
             Intent intent = new Intent(RecycleView.this, Details.class);
             intent.putExtra("Eatery", list.get(i));
             startActivity(intent);
 
-        }
-        else if(code==3)
-        {
+        } else if (code == 3) {
             Intent intent = new Intent(RecycleView.this, detailed_review.class);
             intent.putExtra("Review", listR.get(i));
             startActivity(intent);

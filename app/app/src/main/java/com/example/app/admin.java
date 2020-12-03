@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Field;
 
 public class admin extends AppCompatActivity {
-    ImageView back;
+
     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("_user_");
     String path;
     Button promotion;
@@ -34,16 +34,9 @@ public class admin extends AppCompatActivity {
         setContentView(R.layout.activity_admin);
         //        hide the actionbar
         getSupportActionBar().hide();
-        back = findViewById(R.id.back);
         promotion = findViewById(R.id.btn_promotion);
         criticmail = findViewById(R.id.et_criticmail);
 //        go back to settings
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), personalSettingsAdmin.class));
-            }
-        });
         promotion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,13 +53,13 @@ public class admin extends AppCompatActivity {
                             if (u.getEmail().equals(mail)) {
                                 path = ds.getKey();
                                 dbref.child(path).child("type").setValue(2);
-                                Toast.makeText(admin.this,"User promoted to critic !",Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getBaseContext(),dashboard.class));
+                                Toast.makeText(admin.this, "User promoted to critic !", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getBaseContext(), dashboard.class));
                                 finish();
 
                             }
                         }
-                        if (path==null)
+                        if (path == null)
                             criticmail.setError("The email address selected is incorrect or doesn't exist");
                     }
 

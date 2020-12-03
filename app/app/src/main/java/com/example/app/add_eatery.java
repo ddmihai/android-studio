@@ -131,9 +131,9 @@ public class add_eatery extends AppCompatActivity {
 
                         }
                     });
+                } catch (Exception e) {
+                    Toast.makeText(add_eatery.this, "Please add a picture!", Toast.LENGTH_SHORT).show();
                 }
-                catch (Exception e)
-                {Toast.makeText(add_eatery.this, "Please add a picture!", Toast.LENGTH_SHORT).show();}
                 final ArrayList<Eatery> check = new ArrayList<>();
                 Query dbref_check = FirebaseDatabase.getInstance().getReference("Eatery").orderByChild("name").equalTo(n);
                 dbref_check.addListenerForSingleValueEvent(new ValueEventListener() {

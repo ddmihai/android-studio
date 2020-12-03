@@ -25,6 +25,7 @@ public class reservation extends AppCompatActivity {
     EditText hour;
     Button reserve;
     Booking booking;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class reservation extends AppCompatActivity {
         calendar = findViewById(R.id.calendarView);
         name = findViewById(R.id.tv_res_name);
         reserve = findViewById(R.id.btn_reserve);
-        hour=findViewById(R.id.et_time);
+        hour = findViewById(R.id.et_time);
         final Eatery e = getIntent().getParcelableExtra("Eatery");
         name.setText(e.getName());
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -43,7 +44,7 @@ public class reservation extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-               booking= new Booking(year, month, dayOfMonth, 0, e.getName(), FirebaseAuth.getInstance().getCurrentUser().getUid());
+                booking = new Booking(year, month, dayOfMonth, 0, e.getName(), FirebaseAuth.getInstance().getCurrentUser().getUid());
                 Toast.makeText(reservation.this, "Date Selected !", Toast.LENGTH_SHORT).show();// TODO Auto-generated method stub
 
             }
@@ -51,16 +52,15 @@ public class reservation extends AppCompatActivity {
         reserve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double time=0;
+                double time = 0;
                 try {
                     time = Double.parseDouble(hour.getText().toString());
-                    if (time<11 || time >18)
+                    if (time < 11 || time > 18)
                         hour.setError("We are not open at that time");
-                    else
-                    {
+                    else {
                         booking.setHour(time);
                         dbref.child(dbref.push().getKey()).setValue(booking);
-                        startActivity( new Intent(getBaseContext(),dashboard.class));
+                        startActivity(new Intent(getBaseContext(), dashboard.class));
                     }
                 } catch (Exception exception) {
                     hour.setError("Please enter a valid time");
