@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
     public static final int SELECT_PICTURE = 1;
     public static final String URL = "URL";
     Uri url;
-
+    int ok=0;
     EditText fname, lname, login, email, password;
     Button signup;
     ImageView chooseprofilepic;
@@ -101,38 +101,41 @@ public class Register extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-                            final StorageReference reference = sref.child(fn + "." + getExt(url));
-                            reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                    reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                        @Override
-                                        public void onSuccess(Uri uri) {
-                                            String downloadURL = uri.toString();
-                                            User user = new User(fn, ln, mail, pwd, log, downloadURL, 1);
-                                            String key=dbref.push().getKey();
 
-                                            dbref.child(key).setValue(user);
-                                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            try {
+                                final StorageReference reference = sref.child(fn + "." + getExt(url));
+                                reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                String downloadURL = uri.toString();
+                                                User user = new User(fn, ln, mail, pwd, log, downloadURL, 1);
+                                                String key = dbref.push().getKey();
 
-                                        }
-                                    });
-                                }
-                            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                @Override
-                                public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                                                dbref.child(key).setValue(user);
+                                                Intent i=new Intent(getBaseContext(),MainActivity.class);
+                                                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
-                                }
-                            }).addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(Register.this, "Picture not selected !", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                            }
+                                        });
+                                    }
+                                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
 
-
-                        } else Toast.makeText(Register.this, "Error !", Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                    }
+                                });
+                                Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                            }
+                            catch (Exception e)
+                            {Toast.makeText(Register.this, "Please select a profile picture", Toast.LENGTH_SHORT).show();}
+                        } else Toast.makeText(Register.this, "Error please try again !", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -144,6 +147,7 @@ public class Register extends AppCompatActivity {
         chooseprofilepic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ok=1;
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);

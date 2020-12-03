@@ -3,6 +3,7 @@ package com.example.app;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.Rating;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,6 +29,8 @@ public class user_profile extends AppCompatActivity {
         getSupportActionBar().hide();
         final User u = getIntent().getParcelableExtra("User");
         setContentView(R.layout.activity_user_profile);
+        int nrLikes=getIntent().getIntExtra("nrLikes",0);
+        int nrDislikes=getIntent().getIntExtra("nrDislikes",0);
         name = findViewById(R.id.tv_userprofile_name);
         login = findViewById(R.id.tv_userprofile_login);
         email = findViewById(R.id.tv_userprofile_email);

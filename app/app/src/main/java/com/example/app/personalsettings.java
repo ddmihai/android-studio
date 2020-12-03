@@ -230,7 +230,7 @@ public class personalsettings extends AppCompatActivity {
                                 public void onSuccess(Uri uri) {
                                     String downloadURL = uri.toString();
                                     dbref.child(path).child("url").setValue(downloadURL);
-                                    //((logged) getApplication()).getLogged().setUrl(downloadURL);
+                                    ((logged) getApplication()).getLogged().setUrl(downloadURL);
                                 }
                             });
                         }

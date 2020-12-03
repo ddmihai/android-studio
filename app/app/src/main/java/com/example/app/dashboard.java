@@ -19,6 +19,17 @@ public class dashboard extends AppCompatActivity {
     Button settings, e_restaurant, e_streetfood, logout, addRestaurant, addStreetfood;
     TextView fullname, type;
     ImageView avatar;
+    int countExit = 0;
+
+    public void onBackPressed() {
+
+        countExit++;
+        Toast.makeText(dashboard.this, "On second press the app will close!", Toast.LENGTH_SHORT).show();
+        if (countExit == 2)
+            finishAndRemoveTask();
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +126,7 @@ public class dashboard extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finishAffinity();
                 Toast.makeText(getBaseContext(), "Logout Successful!", Toast.LENGTH_SHORT).show();
             }
         });

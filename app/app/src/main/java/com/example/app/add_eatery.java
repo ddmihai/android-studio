@@ -44,7 +44,7 @@ public class add_eatery extends AppCompatActivity {
     RadioButton street, restaurant, veg, nveg;
     ImageView add_image;
     Button complete;
-    String downloadURL;
+    private String downloadURL;
     DatabaseReference dbref = FirebaseDatabase.getInstance().getReference("Eatery");
     StorageReference sref = FirebaseStorage.getInstance().getReference("images");
 
@@ -107,33 +107,7 @@ public class add_eatery extends AppCompatActivity {
                     s = "Non-Vegetarian";
                 else
                     Toast.makeText(add_eatery.this, "Select serving type", Toast.LENGTH_SHORT).show();
-                try {
-                    final StorageReference reference = sref.child(n + "." + getExt(url));
-                    reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    downloadURL = uri.toString();
 
-                                }
-                            });
-                        }
-                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
-                } catch (Exception e) {
-                    Toast.makeText(add_eatery.this, "Please add a picture!", Toast.LENGTH_SHORT).show();
-                }
                 final ArrayList<Eatery> check = new ArrayList<>();
                 Query dbref_check = FirebaseDatabase.getInstance().getReference("Eatery").orderByChild("name").equalTo(n);
                 dbref_check.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -143,21 +117,75 @@ public class add_eatery extends AppCompatActivity {
                             check.add(dss.getValue(Eatery.class));
                         }
                         if (check.size() == 0) {
-                            Eatery e = new Eatery(n, downloadURL, d, l, s, type, 0, 0);
-                            dbref.child(dbref.push().getKey()).setValue(e);
-                            Toast.makeText(add_eatery.this, "Eatery added !", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getBaseContext(), dashboard.class));
+                            try {
+                                final StorageReference reference = sref.child(n + "." + getExt(url));
+                                reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                downloadURL = uri.toString();
+                                                Eatery e = new Eatery(n, downloadURL, d, l, s, type, 0, 0);
+                                                dbref.child(dbref.push().getKey()).setValue(e);
+                                                Toast.makeText(add_eatery.this, "Eatery added !", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(getBaseContext(), dashboard.class));
+
+                                            }
+                                        });
+                                    }
+                                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+
+                                    }
+                                });
+                            } catch (Exception e) {
+                                Toast.makeText(add_eatery.this, "Please add a picture!", Toast.LENGTH_SHORT).show();
+                            }
+
                         } else if (check.size() != 0) {
                             boolean exists = false;
                             for (int i = 0; i < check.size(); i++)
                                 if (l.compareToIgnoreCase(check.get(i).getLocation()) == 0)
                                     exists = true;
                             if (exists == false) {
+                                try {
+                                    final StorageReference reference = sref.child(n + "." + getExt(url));
+                                    reference.putFile(url).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                            reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+                                                    downloadURL = uri.toString();
+                                                    Eatery e = new Eatery(n, downloadURL, d, l, s, type, 0, 0);
+                                                    dbref.child(dbref.push().getKey()).setValue(e);
+                                                    Toast.makeText(add_eatery.this, "Eatery added !", Toast.LENGTH_SHORT).show();
+                                                    startActivity(new Intent(getBaseContext(), dashboard.class));
 
-                                Eatery e = new Eatery(n, downloadURL, d, l, s, type, 0, 0);
-                                dbref.child(dbref.push().getKey()).setValue(e);
-                                Toast.makeText(add_eatery.this, "Eatery added !", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getBaseContext(), dashboard.class));
+                                                }
+                                            });
+                                        }
+                                    }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+
+                                        }
+                                    }).addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+                                } catch (Exception e) {
+                                    Toast.makeText(add_eatery.this, "Please add a picture!", Toast.LENGTH_SHORT).show();
+                                }
                             } else
                                 Toast.makeText(add_eatery.this, "Eatery already exists !", Toast.LENGTH_SHORT).show();
                         }
@@ -177,7 +205,7 @@ public class add_eatery extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         //verify the image pick
-        if (requestCode == SELECT_PICTURE) {
+        if (requestCode == SELECT_PICTURE&& resultCode == RESULT_OK && data != null) {
             url = data.getData();
             Picasso.get().load(url).into(add_image);
         }

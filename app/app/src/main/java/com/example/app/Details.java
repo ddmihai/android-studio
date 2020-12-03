@@ -43,7 +43,7 @@ public class Details extends AppCompatActivity {
         desc.setText(e.getDescription());
         rating.setRating(e.getRating() / e.getRatingNr());
         if (e.getType().equals("Street Food"))
-            add.setVisibility(View.GONE);
+            reservation.setVisibility(View.GONE);
 //        get info page
         info.setOnClickListener(new View.OnClickListener() {
             @Override

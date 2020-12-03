@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     EditText log_email, log_pwd;
     User user;
     private FirebaseAuth mAuth;
+    FirebaseUser loguser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,16 +59,17 @@ public class MainActivity extends AppCompatActivity {
         log_pwd = findViewById(R.id.log_pwd);
 
         if (mAuth.getCurrentUser() != null) {
-            final FirebaseUser user = mAuth.getCurrentUser();
+            ;
             final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("_user_");
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    loguser = mAuth.getCurrentUser();
                     for (DataSnapshot dss : snapshot.getChildren()) {
                         User u = dss.getValue(User.class);
-                        if (u.getEmail().equals(user.getEmail())) {
+                        if (u.getEmail().equals(loguser.getEmail())) {
                             if (u.getUid() == null)
-                                ref.child(dss.getKey()).child("uid").setValue(user.getUid());
+                                ref.child(dss.getKey()).child("uid").setValue(loguser.getUid());
                             Intent i = new Intent(getBaseContext(), dashboard.class);
                             ((logged) getApplication()).setLogged(u);//calling the class that extends the app to hold the type of user
                             //consideration for adding put extra everywhere

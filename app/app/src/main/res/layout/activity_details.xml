@@ -112,15 +112,6 @@
         app:layout_constraintVertical_bias="0.106"
         app:srcCompat="@drawable/info" />
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/back" />
-
     <TextView
         android:id="@+id/tv_details_name"
         android:layout_width="wrap_content"
@@ -148,6 +139,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
+        android:isIndicator="true"
         android:id="@+id/ratingBar2"
         android:layout_width="wrap_content"
         android:layout_height="45dp"

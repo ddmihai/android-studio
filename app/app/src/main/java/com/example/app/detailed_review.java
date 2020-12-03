@@ -32,20 +32,43 @@ public class detailed_review extends AppCompatActivity {
     DatabaseReference eref = FirebaseDatabase.getInstance().getReference("Eatery");
     String uPath, ePath;
     Button profile;
-
+    boolean like_clicked = true;
+    boolean dislike_clicked = true;
     Eatery reviewedE;
     ArrayList<String> Like = new ArrayList<>();
     ArrayList<String> Dislike = new ArrayList<>();
-    ArrayList<User> list = new ArrayList<>();
+    ArrayList<String> listL = new ArrayList<>();
+    ArrayList<String> listD = new ArrayList<>();
+
+    public void onBackPressed() {
+        startActivity(new Intent(getBaseContext(), dashboard.class));
+        if (reviewedE.getType().equals("Restaurant")) {
+            Intent i = new Intent(getBaseContext(), RecycleView.class);
+            i.putExtra("Path", "Eatery");
+            i.putExtra("Code", 1);
+            i.putExtra("Type", "Restaurant");
+            i.putExtra("Header", 1);
+            startActivity(i);
+
+        } else {
+            Intent i = new Intent(getBaseContext(), RecycleView.class);
+            i.putExtra("Path", "Eatery");
+            i.putExtra("Code", 1);
+            i.putExtra("Type", "Street Food");
+            i.putExtra("Header", 2);
+            startActivity(i);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_review);
         //        hide the actionbar
         getSupportActionBar().hide();
         final Review r = getIntent().getParcelableExtra("Review");
-        final User log=((logged)getApplication()).getLogged();
+        final User log = ((logged) getApplication()).getLogged();
         profile = findViewById(R.id.btn_profile);
         login = findViewById(R.id.tv_detailedreview_login);
         rDesc = findViewById(R.id.review_desc);
@@ -84,14 +107,14 @@ public class detailed_review extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dss : snapshot.getChildren()) {
                     {
-                        Log.d("detailed_review","Back here");
+                        Log.d("detailed_review", "Back here");
                         User u = dss.getValue(User.class);
                         if (u.getUid().equals(r.getReviewerID())) {
                             login.setText(u.getLogin());
                             Picasso.get().load(u.getUrl()).into(profilePic);
                         }
-                        if(u.getUid().equals(log.getUid()))
-                            uPath=u.getUid();
+                        if (u.getUid().equals(log.getUid()))
+                            uPath = u.getUid();
                         if (!(u.getUid().equals(log.getUid())) && log.getType() != 3)
                             delete.setVisibility(View.GONE);
                     }
@@ -103,32 +126,34 @@ public class detailed_review extends AppCompatActivity {
 
             }
         });
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                for (DataSnapshot dss : snapshot.getChildren()) {
-//                    for (DataSnapshot ds : dss.child("Like").getChildren()) {
-//                        Like.add(ds.getValue(String.class));
-//                        Like.add(ds.getKey());
-//
-//
-//                    }
-//                    for (DataSnapshot ds : dss.child("Dislike").getChildren()) {
-//                        Dislike.add(ds.getValue(String.class));
-//                        Dislike.add(ds.getKey());
-//
-//
-//                    }
-//                }
-//        }
-//
-//
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dss : snapshot.getChildren()) {
+                    Review rev = dss.getValue(Review.class);
+                    if (rev.getPath().equals(r.getPath())) {
+                        for (DataSnapshot ds : dss.child("Like").getChildren()) {
+                            Like.add(ds.getValue(String.class));
+                            Like.add(ds.getKey());
+
+
+                        }
+                        for (DataSnapshot ds : dss.child("Dislike").getChildren()) {
+                            Dislike.add(ds.getValue(String.class));
+                            Dislike.add(ds.getKey());
+
+
+                        }
+                    }
+                }
+            }
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -150,34 +175,62 @@ public class detailed_review extends AppCompatActivity {
         });
         like.setOnClickListener(new View.OnClickListener() {
 
-            boolean exists = false;
+            boolean exists;
+            boolean movedDislike;
             String npath;
+
             @Override
             public void onClick(View v) {
+                like_clicked = true;
+                movedDislike = false;
+                exists = false;
+                for (int i = 0; i < Dislike.size() && dislike_clicked == true; i++)
+                    if (Dislike.get(i).equals(log.getUid())) {
+                        ref.child(r.getPath()).child("dislikes").setValue(r.getDislikes() - 1);
+                        r.setDislikes(r.getDislikes() - 1);
+                        ref.child(r.getPath()).child("Dislike").child(Dislike.get(i + 1)).removeValue();
+                        Dislike.remove(i);
+                        Dislike.remove(i);
+                        dislikes.setText(String.valueOf(r.getDislikes()));
+                        ref.child(r.getPath()).child("likes").setValue(r.getLikes() + 1);
+                        r.setLikes(r.getLikes() + 1);
+                        npath = ref.push().getKey();
+                        ref.child(r.getPath()).child("Like").child(npath).setValue(uPath);
+                        likes.setText(String.valueOf(r.getLikes()));
+                        Like.add(uPath);
+                        Like.add(npath);
+                        movedDislike = true;
+                        exists = true;
+                        dislike_clicked = false;
+                        like_clicked = true;
+                    }
+
                 if (Like.size() == 0) {
                     ref.child(r.getPath()).child("likes").setValue(r.getLikes() + 1);
                     r.setLikes(r.getLikes() + 1);
-                    npath=ref.push().getKey();
+                    npath = ref.push().getKey();
                     ref.child(r.getPath()).child("Like").child(npath).setValue(uPath);
                     likes.setText(String.valueOf(r.getLikes()));
                     Like.add(uPath);
                     Like.add(npath);
                     exists = true;
-                } else for (int i = 0; i < Like.size(); i += 2) {
+                } else for (int i = 0; i < Like.size() && (movedDislike == false); i += 2) {
                     if (Like.get(i).equals(log.getUid())) {
                         ref.child(r.getPath()).child("likes").setValue(r.getLikes() - 1);
                         r.setLikes(r.getLikes() - 1);
-                        ref.child(r.getPath()).child("Like").child(Like.get(i+1)).removeValue();
+                        ref.child(r.getPath()).child("Like").child(Like.get(i + 1)).removeValue();
                         Like.remove(i);
                         Like.remove(i);
                         likes.setText(String.valueOf(r.getLikes()));
                         exists = true;
+                        like_clicked = false;
+
                     }
                 }
                 if (exists == false) {
                     ref.child(r.getPath()).child("likes").setValue(r.getLikes() + 1);
                     r.setLikes(r.getLikes() + 1);
-                    npath=ref.push().getKey();
+                    npath = ref.push().getKey();
                     ref.child(r.getPath()).child("Like").child(npath).setValue(uPath);
                     Like.add(uPath);
                     Like.add(npath);
@@ -190,34 +243,60 @@ public class detailed_review extends AppCompatActivity {
         });
 
         dislike.setOnClickListener(new View.OnClickListener() {
-            boolean exists = false;
+            boolean exists, movedLike;
             String npath;
+
             @Override
             public void onClick(View v) {
+                dislike_clicked = true;
+                movedLike = false;
+                exists = false;
+                for (int i = 0; i < Like.size() && like_clicked == true; i++)
+                    if (Like.get(i).equals(log.getUid())) {
+                        ref.child(r.getPath()).child("likes").setValue(r.getLikes() - 1);
+                        r.setLikes(r.getLikes() - 1);
+                        ref.child(r.getPath()).child("Like").child(Like.get(i + 1)).removeValue();
+                        Like.remove(i);
+                        Like.remove(i);
+                        likes.setText(String.valueOf(r.getLikes()));
+                        ref.child(r.getPath()).child("dislikes").setValue(r.getDislikes() + 1);
+                        r.setDislikes(r.getDislikes() + 1);
+                        npath = ref.push().getKey();
+                        ref.child(r.getPath()).child("Dislike").child(npath).setValue(uPath);
+                        dislikes.setText(String.valueOf(r.getDislikes()));
+                        Dislike.add(uPath);
+                        Dislike.add(npath);
+                        movedLike = true;
+                        exists = true;
+                        dislike_clicked = true;
+                        like_clicked = false;
+                    }
+
                 if (Dislike.size() == 0) {
                     ref.child(r.getPath()).child("dislikes").setValue(r.getDislikes() + 1);
                     r.setDislikes(r.getDislikes() + 1);
-                    npath=ref.push().getKey();
+                    npath = ref.push().getKey();
                     ref.child(r.getPath()).child("Dislike").child(npath).setValue(uPath);
                     dislikes.setText(String.valueOf(r.getDislikes()));
                     Dislike.add(uPath);
                     Dislike.add(npath);
                     exists = true;
-                } else for (int i = 0; i < Dislike.size(); i += 2) {
+                } else for (int i = 0; i < Dislike.size() && movedLike == false; i += 2) {
                     if (Dislike.get(i).equals(log.getUid())) {
                         ref.child(r.getPath()).child("dislikes").setValue(r.getDislikes() - 1);
                         r.setDislikes(r.getDislikes() - 1);
-                        ref.child(r.getPath()).child("Dislike").child(Dislike.get(i+1)).removeValue();
+                        ref.child(r.getPath()).child("Dislike").child(Dislike.get(i + 1)).removeValue();
                         Dislike.remove(i);
                         Dislike.remove(i);
                         dislikes.setText(String.valueOf(r.getDislikes()));
                         exists = true;
+                        dislike_clicked = false;
                     }
                 }
                 if (exists == false) {
                     ref.child(r.getPath()).child("dislikes").setValue(r.getDislikes() + 1);
                     r.setDislikes(r.getDislikes() + 1);
-                    npath=ref.push().getKey();
+                    npath = ref.push().getKey();
                     ref.child(r.getPath()).child("Dislike").child(npath).setValue(uPath);
                     Dislike.add(uPath);
                     Dislike.add(npath);
