@@ -14,20 +14,20 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapter.holder>
-{
-    public RecycleView_Adapter(ArrayList<Eatery> list,holder.OnCardClickedListener _listener) {
+public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapter.holder> {
+    public RecycleView_Adapter(ArrayList<Eatery> list, holder.OnCardClickedListener _listener) {
         this.list = list;
-        listener=_listener;
+        listener = _listener;
     }
 
     ArrayList<Eatery> list;
     holder.OnCardClickedListener listener;
+
     @NonNull
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview,parent,false);
-        holder h=new holder(v,listener);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview, parent, false);
+        holder h = new holder(v, listener);
         return h;
     }
 
@@ -43,19 +43,18 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
         return list.size();
     }
 
-    public static class holder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public static class holder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView iv;
-        TextView tv,tv2;
+        TextView tv, tv2;
 
         OnCardClickedListener listener;
 
         public holder(@NonNull View itemView, OnCardClickedListener _listener) {
             super(itemView);
-            iv=itemView.findViewById(R.id.iv_card);
-            tv=itemView.findViewById(R.id.tv_card);
-            tv2=itemView.findViewById(R.id.tv_card2);
-            listener=_listener;
+            iv = itemView.findViewById(R.id.iv_card);
+            tv = itemView.findViewById(R.id.tv_card);
+            tv2 = itemView.findViewById(R.id.tv_card2);
+            listener = _listener;
             itemView.setOnClickListener(this);
 
         }
@@ -64,8 +63,8 @@ public class RecycleView_Adapter extends RecyclerView.Adapter<RecycleView_Adapte
         public void onClick(View v) {
             listener.OnCardClickedListener(getAdapterPosition());
         }
-        public interface OnCardClickedListener
-        {
+
+        public interface OnCardClickedListener {
             public void OnCardClickedListener(int i);
         }
 

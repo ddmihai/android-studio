@@ -298,17 +298,4 @@
         app:layout_constraintTop_toTopOf="@+id/view33"
         app:srcCompat="@drawable/rench" />
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/textView35"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        app:srcCompat="@drawable/back" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

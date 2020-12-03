@@ -11,13 +11,12 @@ import android.widget.ImageView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class info extends AppCompatActivity {
-    ImageView back;
+
     Button logout;
+
     @Override
-                            //    Delete reviews
-                            //    Eateries unicate
-                            //    Update firebase on email update
-                            //rate reviews of critics
+    //    Delete reviews
+    //rate reviews of critics
 
     //Create Users
     //-Normal User
@@ -42,22 +41,14 @@ public class info extends AppCompatActivity {
     //Bugs :
     //when allready logged in agapie@gmail.com, from the dashboard i pressed back and i've got the dashboard from
     //the new user (sarrina)
-                            //    users rate reviews
+    //    users rate reviews
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         //        hide the actionbar
         getSupportActionBar().hide();
+        logout = findViewById(R.id.logout);
 
-        back = findViewById(R.id.back);
-        logout= findViewById(R.id.logout);
-//        go back button
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), Details.class));
-            }
-        });
 
 //        logout button
         logout.setOnClickListener(new View.OnClickListener() {

@@ -3,7 +3,7 @@ package com.example.app;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Eatery implements Parcelable,Comparable<Eatery> {
+public class Eatery implements Parcelable, Comparable<Eatery> {
     private String name;
     private String url;
     private String description;
@@ -12,6 +12,7 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
     private String type;
     private float rating;
     private int ratingNr;
+
     public Eatery() {
     }
 
@@ -66,7 +67,8 @@ public class Eatery implements Parcelable,Comparable<Eatery> {
     }
 
     public void setRating(float rating) {
-        this.rating+= rating;;
+        this.rating += rating;
+        ;
     }
 
     public String getType() {

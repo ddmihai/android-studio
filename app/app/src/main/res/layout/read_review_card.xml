@@ -69,6 +69,7 @@
             tools:visibility="visible" />
 
         <RatingBar
+            android:isIndicator="true"
             android:id="@+id/ratingBar3"
             android:layout_width="237dp"
             android:layout_height="43dp"

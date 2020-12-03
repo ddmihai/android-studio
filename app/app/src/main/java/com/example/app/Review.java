@@ -1,4 +1,5 @@
 package com.example.app;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -6,27 +7,49 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Review implements Parcelable {
-    Date reviewTime;
     String review;
-    String reviewerMail;
+    String reviewerID;
     String eateryName;
     float rating;
+    int likes;
+    int dislikes;
+    String path;
 
-    public Review(Date reviewTime, String review, String reviewerMail, String eateryName, float rating) {
-        this.reviewTime = reviewTime;
+    public Review(String review, String reviewerID, String eateryName, float rating, int likes, int dislikes, String path) {
         this.review = review;
-        this.reviewerMail = reviewerMail;
+        this.reviewerID = reviewerID;
         this.eateryName = eateryName;
         this.rating = rating;
+        this.likes = likes;
+        this.dislikes = dislikes;
+        this.path = path;
+
     }
-    public Review()
-    {}
 
     protected Review(Parcel in) {
         review = in.readString();
-        reviewerMail = in.readString();
+        reviewerID = in.readString();
         eateryName = in.readString();
         rating = in.readFloat();
+        likes = in.readInt();
+        dislikes = in.readInt();
+        path = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(review);
+        dest.writeString(reviewerID);
+        dest.writeString(eateryName);
+        dest.writeFloat(rating);
+        dest.writeInt(likes);
+        dest.writeInt(dislikes);
+        dest.writeString(path);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Review> CREATOR = new Creator<Review>() {
@@ -41,13 +64,41 @@ public class Review implements Parcelable {
         }
     };
 
-    public Date getReviewTime() {
-        return reviewTime;
+    public String getReviewerID() {
+        return reviewerID;
     }
 
-    public void setReviewTime(Date reviewTime) {
-        this.reviewTime = reviewTime;
+    public void setReviewerID(String reviewerID) {
+        this.reviewerID = reviewerID;
     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+
+    public int getDislikes() {
+        return dislikes;
+    }
+
+    public void setDislikes(int dislikes) {
+        this.dislikes = dislikes;
+    }
+
+    public Review() {
+    }
+
 
     public String getReview() {
         return review;
@@ -57,13 +108,6 @@ public class Review implements Parcelable {
         this.review = review;
     }
 
-    public String getReviewerMail() {
-        return reviewerMail;
-    }
-
-    public void setReviewerMail(String reviewerMail) {
-        this.reviewerMail = reviewerMail;
-    }
 
     public String getEateryName() {
         return eateryName;
@@ -81,16 +125,4 @@ public class Review implements Parcelable {
         this.rating = rating;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(review);
-        dest.writeString(reviewerMail);
-        dest.writeString(eateryName);
-        dest.writeFloat(rating);
-    }
 }

@@ -12,18 +12,18 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class settings extends AppCompatActivity {
-    ImageView personal_settings,bookings, back;
+    ImageView personal_settings, bookings;
     Button logout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         //        hide the actionbar
         getSupportActionBar().hide();
-        back = findViewById(R.id.back);
         logout = findViewById(R.id.logout_settings);
         personal_settings = findViewById(R.id.personal_settings);
-        bookings=findViewById(R.id.your_bookings);
+        bookings = findViewById(R.id.your_bookings);
 
         //    go to personal settings
         personal_settings.setOnClickListener(new View.OnClickListener() {
@@ -37,31 +37,25 @@ public class settings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), RecycleView.class);
-                i.putExtra("Path","_bookings_");
-                i.putExtra("Code",2);
+                i.putExtra("Path", "_bookings_");
+                i.putExtra("Code", 2);
                 startActivity(i);
             }
         });
 
-//        go back
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getBaseContext(), dashboard.class));
-            }
-        });
+//
 
 //              logout
         logout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                    Toast.makeText(getBaseContext(), "Logout Successful!", Toast.LENGTH_SHORT).show();
-                }
-            });
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                Toast.makeText(getBaseContext(), "Logout Successful!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 }

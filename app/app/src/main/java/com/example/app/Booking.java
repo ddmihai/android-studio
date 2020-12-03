@@ -2,20 +2,21 @@ package com.example.app;
 
 import java.util.Date;
 
-public class Booking implements Comparable<Booking>{
+public class Booking implements Comparable<Booking> {
     private int day;
     private int year;
     private int month;
     private double hour;
     private String eatery;
     private String address;
-    public Booking(int year, int month, int day, double hour, String eatery,String address) {
+
+    public Booking(int year, int month, int day, double hour, String eatery, String address) {
         this.day = day;
         this.year = year;
         this.month = month;
         this.hour = hour;
         this.eatery = eatery;
-        this.address=address;
+        this.address = address;
     }
 
     public String getAddress() {
@@ -71,7 +72,7 @@ public class Booking implements Comparable<Booking>{
 
     @Override
     public int compareTo(Booking o) {
-       return 0;
+        return 0;
     }
 }
 
